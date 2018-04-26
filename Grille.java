@@ -4,7 +4,7 @@ public class Grille {
     private static int ligne = 7;
 
     public static boolean estGagnee(int i, Pion[] grille){
-        if(Grille.ligneGagnante(i,grille) || Grille.colonneGagnante(i,grille) || Grille.diagonaleGGagnante(i,grille))
+        if(Grille.ligneGagnante(i,grille) || Grille.colonneGagnante(i,grille) || Grille.diagonaleGagnante(i,grille))
             return true;
         return false;
     }
