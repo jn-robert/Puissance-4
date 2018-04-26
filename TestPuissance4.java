@@ -12,6 +12,7 @@ public class TestPuissance4 {
                 null, null, null, j1, null, null, null
         };
 
+        // faire jeu coup par coup
         int i=0;
         while (!Grille.estGagnee(i,grille) && i<grille.length-3){
             i++;
