@@ -2,7 +2,7 @@ package Puissance;
 
 public class TestPuissance4 {
     public static void main(String[] args){
-        Pion j1 = new Pion("Bleu");
+        Pion j1 = new Pion("Bleu"); //renommer Pion en joueur(dimitri)
         Pion[] grille = new Pion[]{
                 null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null,
