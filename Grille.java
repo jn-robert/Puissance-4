@@ -1,7 +1,6 @@
 package Puissance;
 
 public class Grille {
-    private Pion[] grid = new Pion[7*6];
     private static int ligne = 7;
 
     public static boolean estGagnee(int i, Pion[] grille){
