@@ -25,7 +25,7 @@ public class Grille {
         return false;
     }
 
-    public static boolean diagonaleGGagnante(int x,Pion[] grid){
+    public static boolean diagonaleGagnante(int x,Pion[] grid){
         if(x > ligne*3)
             return false;
         if (x%ligne <= ligne-3){
