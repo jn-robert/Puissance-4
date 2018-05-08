@@ -1,38 +1,37 @@
 public class Grille {
-    private static int ligne = 7;
 
-    public static boolean estGagnee(int i, Pion[] grille){
-        if(Grille.ligneGagnante(i,grille) || Grille.colonneGagnante(i,grille) || Grille.diagonaleGagnante(i,grille))
+    public static boolean estGagnee(int x, int y, Pion[][] grille){
+        if(Grille.ligneGagnante(x,y,grille) || Grille.colonneGagnante(x,y,grille) || Grille.diagonaleGagnante(x,y,grille))
             return true;
         return false;
     }
 
-    public static boolean ligneGagnante(int x,Pion[] grid){
-        if(x%ligne > 4)
+    public static boolean ligneGagnante(int x,int y,Pion[][] grid){
+        if(y > 3)
             return  false;
-        if(grid[x] != null && grid[x] == grid[x+1] && grid[x] == grid[x+2] && grid[x] == grid[x+3])
+        if(grid[x][y] != null && grid[x][y] == grid[x][y+1] && grid[x][y] == grid[x][y+2] && grid[x][y] == grid[x][y+3])
             return true;
         return false;
     }
 
-    public static boolean colonneGagnante(int x,Pion[] grid){
-        if(x > ligne*3)
+    public static boolean colonneGagnante(int x,int y,Pion[][] grid){
+        if(x > 2)
             return false;
-        if (grid[x] != null && grid[x] == grid[ligne + x] && grid[x] == grid[2*ligne + x] && grid[x] == grid[3*ligne + x])
+        if (grid[x][y] != null && grid[x][y] == grid[x+1][y] && grid[x][y] == grid[x+2][y] && grid[x][y] == grid[x+3][y])
             return true;
         return false;
     }
 
-    public static boolean diagonaleGagnante(int x,Pion[] grid){
-        if(x > ligne*3)
+    public static boolean diagonaleGagnante(int x,int y,Pion[][] grid){
+        if(x > 2)
             return false;
-        if (x%ligne <= ligne-3){
-            if (grid[x] != null && grid[x] == grid[x+ligne+1] && grid[x] == grid[x+2*ligne+2] && grid[x] == grid[x+3*ligne+3]){
+        if (y <= 3){
+            if (grid[x][y] != null && grid[x][y] == grid[x+1][y+1] && grid[x][y] == grid[x+2][y+2] && grid[x][y] == grid[x+3][y+3]){
                 return true;
             }
         }
-        if (x%ligne > 3){
-            if (grid[x] != null && grid[x] == grid[x+ligne-1] && grid[x] == grid[x+2*ligne-2] && grid[x] == grid[x+3*ligne-3])
+        if (y >= 3){
+            if (grid[x][y] != null && grid[x][y] == grid[x+1][y-1] && grid[x][y] == grid[x+2][y-2] && grid[x][y] == grid[x+3][y-3])
                 return true;
             return false;
         }
