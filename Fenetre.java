@@ -1,67 +1,85 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
-/**
- * Created by ahoureux on 27/03/18.
- */
-
 public class Fenetre extends JFrame {
-
-    private JLabel nbJ;
-    private JLabel ou;
-    private JButton bc;
-    private JButton bc2;
-    private ControlBouton controlBut;
-
-
-    public Fenetre() {
-
-        creerWidget();
-        initAttribut();
-        ajouterWidgetVersion1();
-
-        setSize(280,280);                                // Fixe la taille par défaut
-        setVisible(true);                                // Affiche la fenetre
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+    Image imgIut;
+    JButton jbPartieClassique;
+    ControlBoutonPartieClassique cbClassique;
+    JLabel jlJjoeur1;
+    JLabel jlJoeur2;
+    JButton [] tabJetons;
+    Fenetre(){
+        setVisible(true);
+        creerWidjetMenu();
+        setMenu();
+        pack();
     }
-    public void creerWidget() {
 
-        // joueur
-        bc = new JButton("1 joueur");
-        controlBut = new ControlBouton(this);
-        bc.addActionListener(controlBut);
-        bc2 = new JButton("2 joueur");
-        controlBut = new ControlBouton(this);
-        bc2.addActionListener(controlBut);
+    public void creerWidjetMenu(){
+        setTitle("Parametres de la partie ");
+        imgIut=Toolkit.getDefaultToolkit().getImage("logoIut.jpg");
+        setIconImage(imgIut);
+        jbPartieClassique=new JButton("Partie Classqiue");
+        cbClassique= new ControlBoutonPartieClassique(this);
+        jbPartieClassique.addActionListener(cbClassique);
+    }
+
+    public void setMenu(){
+        JPanel jpartieClassique= new JPanel();
+        jpartieClassique.add(jbPartieClassique);
+
+        setContentPane(jpartieClassique);
 
 
-        //Text
-        nbJ = new JLabel("Nombre de Joueurs : ");
-        ou = new JLabel("OU");
 
 
     }
-    public void initAttribut(){
+    public void lancerPartie(int n){
+        if (n==1){
+            setVisible(true);
+            partieClassique();
+            pack();
+        }
+        else partiePersonnaliser();
+    }
+
+    public void partieClassique() {
+        creerWidjetPartieClassique();
+        placerWidjetPartieClassique();
+        }
+
+
+    public void creerWidjetPartieClassique() {
+    jlJjoeur1=new JLabel("Joueur 1");
+    jlJoeur2= new JLabel("Joueur 2");
+    tabJetons = new JButton[5];
+
 
     }
 
-    public void ajouterWidgetVersion1(){
-        JPanel pgrandPanel = new JPanel(new GridLayout(5,3));
-        JPanel pgiga = new JPanel();
-        Border border=BorderFactory.createTitledBorder("");
-        pgrandPanel.setBorder(border);
 
+    public void placerWidjetPartieClassique() {
+        JPanel jPanelNom=new JPanel();
+        jPanelNom.setLayout(new BoxLayout(jPanelNom,BoxLayout.Y_AXIS));
+        jPanelNom.add(jlJjoeur1);
+        jPanelNom.add(jlJoeur2);
 
-        pgrandPanel.add(nbJ);
-        pgrandPanel.add(bc);
-        pgrandPanel.add(ou);
-        pgrandPanel.add(bc2);
-        pgiga.add(pgrandPanel);
+        JPanel jPanelGrille = new JPanel();
+        jPanelGrille.setLayout(new GridLayout(tabJetons.length,1));
+        for(int i=0;i<tabJetons.length;i++){
+            jPanelGrille.add(tabJetons[i]);
+        }
+        JPanel jPanelPuissance4 = new JPanel();
+        jPanelPuissance4.setLayout(new BoxLayout(jPanelPuissance4,BoxLayout.Y_AXIS));
 
-        setContentPane(pgiga);
+        setContentPane(jPanelPuissance4);
 
     }
+
+    public void partiePersonnaliser(){
+        creerWidjetMenu();
+
     }
+
+}
 
