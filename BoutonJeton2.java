@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 
 public class BoutonJeton2 implements ActionListener {
     Model model;
-    Vue vue;
+    Fenetre vue;
 
     int tailleTab;
     static int compteurJetons=0;
 
 
-    public BoutonJeton2(Model model, Vue vue) {
+    public BoutonJeton2(Model model, Fenetre vue) {
         this.model = model;
         this.vue = vue;
         tailleTab = (model.getGrille().length)*(model.getGrille()[0].length);
@@ -21,20 +21,21 @@ public class BoutonJeton2 implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton jeton = (JButton) e.getSource();
         int j = Integer.parseInt(String.valueOf(jeton.getName().charAt(2)));
-        int posi = Integer.parseInt(String.valueOf(jeton.getName().charAt(0)));
-        if (!model.test(posi, j, model.getGrille()) && compteurJetons< tailleTab) {
+//        int posi = Integer.parseInt(String.valueOf(jeton.getName().charAt(0)));
+        if (compteurJetons< tailleTab) {
             if (model.isP1()) {
                 int i = testColonne(j);
                 try {
                     model.getGrille();
                     model.rempli(i, j, model.getJ1());
                     vue.dessine(i, j, vue.jetonRouge);
-                    if (!model.test(posi, j,model.getGrille())) {
+                    if (!model.test(i, j,model.getGrille())) {
                         model.setP1(false);
                         model.setP2(true);
+                        vue.joueurCourant.setText("Jeton jaune joue");
                         return;
-                    }else {
-                        System.out.println("gagnee");
+                    }else{
+                        System.out.println("j1gagnee");
                         vue.afficheErreur(model.getJ1()+" gagne");
                         System.exit(0);
                     }
@@ -45,19 +46,19 @@ public class BoutonJeton2 implements ActionListener {
                 }
 
 //            model.afficheGrille();
-                vue.joueurCourant.setText("Jeton jaune joue");
             } else if (model.isP2()) {
                 int i = testColonne(j);
                 try {
                     model.getGrille();
                     model.rempli(i, j, model.getJ2());
                     vue.dessine(i, j, vue.jetonJaune);
-                    if (!model.test(posi, j,model.getGrille())){
+                    if (!model.test(i, j,model.getGrille())){
                         model.setP1(true);
                         model.setP2(false);
+                        vue.joueurCourant.setText("jeton rouge joue");
                         return;
-                    }else {
-                        System.out.println("gagnee");
+                    }else{
+                        System.out.println("j2gagnee");
                         vue.afficheErreur(model.getJ2()+" gagne");
                         System.exit(0);
                     }
@@ -66,17 +67,10 @@ public class BoutonJeton2 implements ActionListener {
                     vue.afficheErreur("Colonne pleine ,veuillez jouer ailleurs");
                 }
 //            model.afficheGrille();
-                vue.joueurCourant.setText("jeton rouge joue");
             }
         }else {
-//            if (model.test(posi, j, model.getGrille()) && model.isP1()){
-//                vue.afficheErreur(model.getJ1()+" gagne");
-//            }if (model.test(posi, j, model.getGrille()) && model.isP2()){
-//                vue.afficheErreur(model.getJ2()+" gagne");
-//            }else {
                 vue.afficheErreur("Egalite");
                 System.exit(0);
-//            }
         }
     }
 

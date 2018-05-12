@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Random;
+
 public class Model {
     private  Pion j1;
     private Pion j2;
@@ -5,22 +8,38 @@ public class Model {
     private boolean p2;
     private int choix1;
     private int choix2;
-    private Pion[] grille;
-    private Pion[][] grille2;
+    private int [][] jeu;
+    private Pion[][] grille;
+    private Pion[] grille1D;
 
     public Model(){
-        j1 = new Pion("Bleu");
-        j2 = new Pion("Rouge");
+        j1 = new Pion("rouge");
+        j2 = new Pion("jaune");
+        jeu = new int [6][7];
+        grille = new Pion[6][7];
 
-        grille = new Pion[42];
+        boolean r= ( Math.random() >= 0.5 );
+        if (r){
+            p1 = true;
+            p2=false;
+        }
+        else{
+            p2 = true;
+            p1=false;
+        }
 
-        int i = 0;
+        grille1D = new Pion[42];
 
-        p1 = true;
-        p2 = false;
-
-        grille2 = new Pion[6][7];
     }
+
+    public int[][] getJeu() {
+        return jeu;
+    }
+
+    public void setJeu(int[][] jeu) {
+        this.jeu = jeu;
+    }
+
 
     public Pion getJ1() {
         return j1;
@@ -69,27 +88,28 @@ public class Model {
     public void setChoix2(int choix2) {
         this.choix2 = choix2;
     }
-
-    public Pion[] getGrille() {
+    public Pion[][] getGrille() {
         return grille;
     }
 
-    public void setGrille(Pion[] grille) {
+    public void setGrille(Pion[][] grille) {
         this.grille = grille;
     }
 
-    public boolean test(int i, Pion[] grille){
+    public boolean test(int i, int y,Pion[][] grille){
         boolean result=false;
-        while (!Grille.estGagnee(i,grille) && i<grille.length-3){
+        while (!Grille.estGagnee(i,y,grille) && i<grille.length-3){
             i++;
         }
-        if (Grille.estGagnee(i,grille)){
+        if (Grille.estGagnee(i,y,grille)){
             result = true;
         }
         return result;
     }
 
+
     public void rempli(int i, int j, Pion p){
-        grille2[i][j] = p;
+        grille[i][j] = p;
     }
+
 }

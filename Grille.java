@@ -1,4 +1,6 @@
 public class Grille {
+        private static int ligne = 7;
+        private static int colonne = 6;
 
     public static boolean estGagnee(int x, int y, Pion[][] grille){
         if(Grille.ligneGagnante(x,y,grille) || Grille.colonneGagnante(x,y,grille) || Grille.diagonaleGagnante(x,y,grille))
@@ -38,3 +40,4 @@ public class Grille {
         return false;
     }
 }
+
