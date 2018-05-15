@@ -1,6 +1,6 @@
 public class Grille {
-        private static int ligne = 7;
-        private static int colonne = 6;
+    protected static int longueurX = 6;
+    protected static int largeurY= 7;
 
     public static boolean estGagnee(int x, int y, Pion[][] grille){
         if(Grille.ligneGagnante(x,y,grille) || Grille.colonneGagnante(x,y,grille) || Grille.diagonaleGagnante(x,y,grille))
@@ -9,7 +9,7 @@ public class Grille {
     }
 
     public static boolean ligneGagnante(int x,int y,Pion[][] grid){
-        if(y > 3)
+        if(y > largeurY-4)
             return  false;
         if(grid[x][y] != null && grid[x][y] == grid[x][y+1] && grid[x][y] == grid[x][y+2] && grid[x][y] == grid[x][y+3])
             return true;
@@ -17,7 +17,7 @@ public class Grille {
     }
 
     public static boolean colonneGagnante(int x,int y,Pion[][] grid){
-        if(x > 2)
+        if(x > longueurX-4)
             return false;
         if (grid[x][y] != null && grid[x][y] == grid[x+1][y] && grid[x][y] == grid[x+2][y] && grid[x][y] == grid[x+3][y])
             return true;
@@ -25,14 +25,14 @@ public class Grille {
     }
 
     public static boolean diagonaleGagnante(int x,int y,Pion[][] grid){
-        if(x > 2)
+        if(x > longueurX-4)
             return false;
-        if (y <= 3){
+        if (y <= largeurY-4){
             if (grid[x][y] != null && grid[x][y] == grid[x+1][y+1] && grid[x][y] == grid[x+2][y+2] && grid[x][y] == grid[x+3][y+3]){
                 return true;
             }
         }
-        if (y >= 3){
+        if (y >= largeurY-4){
             if (grid[x][y] != null && grid[x][y] == grid[x+1][y-1] && grid[x][y] == grid[x+2][y-2] && grid[x][y] == grid[x+3][y-3])
                 return true;
             return false;
