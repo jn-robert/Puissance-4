@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BoutonJeton2 implements ActionListener {
-    //test
     Model model;
     Fenetre vue;
 
