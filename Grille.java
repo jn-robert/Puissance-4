@@ -2,6 +2,14 @@ public class Grille {
     protected static int longueurX = 6;
     protected static int largeurY= 7;
 
+    public Grille(){
+    }
+
+    public Grille(int x, int y){
+        this.largeurY = y;
+        this.longueurX = x;
+    }
+
     public static boolean estGagnee(int x, int y, Pion[][] grille){
         if(Grille.ligneGagnante(x,y,grille) || Grille.colonneGagnante(x,y,grille) || Grille.diagonaleGagnante(x,y,grille))
             return true;
