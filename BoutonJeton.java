@@ -28,7 +28,7 @@ public class BoutonJeton implements ActionListener {
                     model.getGrille();
                     model.rempli(i, j, model.getJ1());
                     fen.dessine(i, j, fen.getJetonRouge());
-                    if (!model.test(i, j,model.getGrille())) {
+                    if (!model.test(model.getGrille())) {
                         model.setP1(false);
                         model.setP2(true);
                         fen.getJoueurCourant().setText("Jeton jaune joue");
@@ -49,7 +49,7 @@ public class BoutonJeton implements ActionListener {
                     model.getGrille();
                     model.rempli(i, j, model.getJ2());
                     fen.dessine(i, j, fen.getJetonJaune());
-                    if (!model.test(i, j,model.getGrille())){
+                    if (!model.test(model.getGrille())){
                         model.setP1(true);
                         model.setP2(false);
                         fen.getJoueurCourant().setText("jeton rouge joue");
