@@ -12,9 +12,15 @@ public class Model {
     private Pion[][] grille;
     private int largeurPuissance4;
     private int longeurPuissance4;
-
-
+    private int nombreDeVictoireJoueurJaune;
+    private int nombreDeVictoireJoueurRouge;
+    private int nombreDePartie;
+    private int nombreEgalite;
     public Model(){
+        nombreDeVictoireJoueurRouge=0;
+        nombreDeVictoireJoueurJaune=0;
+        nombreDePartie=1;
+        nombreEgalite=0;
         j1 = new Pion("rouge");
         j2 = new Pion("jaune");
         boolean r= ( Math.random() >= 0.5 );
@@ -44,12 +50,46 @@ public class Model {
         return result;
     }
 
+    public void reset(){
+        init();
+        nombreDeVictoireJoueurJaune=0;
+        nombreDeVictoireJoueurRouge=0;
+        nombreEgalite=0;
+    }
+
     public void init(){
         jeu = new int [longeurPuissance4][largeurPuissance4];
         grille = new Pion[longeurPuissance4][largeurPuissance4];
     }
 
+    public void partieJouer(String gagnant){
+        nombreDePartie--;
 
+    }
+
+    public int getNombreDeVictoireJoueurJaune() {
+        return nombreDeVictoireJoueurJaune;
+    }
+
+    public void setNombreDeVictoireJoueurJaune(int nombreDeVictoireJoueurJaune) {
+        this.nombreDeVictoireJoueurJaune = nombreDeVictoireJoueurJaune;
+    }
+
+    public int getNombreDeVictoireJoueurRouge() {
+        return nombreDeVictoireJoueurRouge;
+    }
+
+    public void setNombreDeVictoireJoueurRouge(int nombreDeVictoireJoueurRouge) {
+        this.nombreDeVictoireJoueurRouge = nombreDeVictoireJoueurRouge;
+    }
+
+    public int getNombreDePartie() {
+        return nombreDePartie;
+    }
+
+    public void setNombreDePartie(int nombreDePartie) {
+        this.nombreDePartie = nombreDePartie;
+    }
 
     public Pion getJ1() {
         return j1;
@@ -95,4 +135,10 @@ public class Model {
         this.longeurPuissance4 = longeurPuissance4;
     }
 
+    public void partieClassique() {
+        largeurPuissance4=7;
+        longeurPuissance4=6;
+        nombreDePartie=1;
+        init();
+    }
 }

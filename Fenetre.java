@@ -34,6 +34,11 @@ public class Fenetre extends JFrame {
     private JButton validerPartie;
     private JLabel labelLargeur;
     private JLabel labelLongeur;
+    private JLabel nbrParties;
+    private JRadioButton unePartie;
+    private JRadioButton troisPartie;
+    private JRadioButton cinqPartie;
+    private ButtonGroup boutonNbrparties;
 // pour la fin de partie;
     private JButton recommencer;
     private JButton quitter;
@@ -78,6 +83,14 @@ public class Fenetre extends JFrame {
     }
 
     public void creerWidjetChoixPartie(){
+        nbrParties = new JLabel("Nombre de parties pour gagner : ");
+        boutonNbrparties = new ButtonGroup();
+        cinqPartie = new JRadioButton("5");
+        troisPartie = new JRadioButton("3");
+        unePartie = new JRadioButton("1",true);
+        boutonNbrparties.add(unePartie);
+        boutonNbrparties.add(troisPartie);
+        boutonNbrparties.add(cinqPartie);
         labelLargeur = new JLabel("Nombre de colonnes :");
         labelLongeur = new JLabel("Profondeur des colonnes :");
         boutonPersonaliserPartie = new BoutonPersonaliserPartie(this,model);
@@ -148,6 +161,7 @@ public class Fenetre extends JFrame {
     }
 
     public void ajouterWidjetChoixPartie(){
+        JPanel panelNbrPartie = new JPanel();
         JPanel panelLargeur = new JPanel();
         JPanel panelLongeur = new JPanel();
         JPanel choixPartie = new JPanel();
@@ -161,8 +175,14 @@ public class Fenetre extends JFrame {
         panelLongeur.add(labelLongeur);
         panelLongeur.add(longeur);
         jvalider.add(validerPartie);
+        jvalider.add(retour);
+        panelNbrPartie.add(nbrParties);
+        panelNbrPartie.add(unePartie);
+        panelNbrPartie.add(troisPartie);
+        panelNbrPartie.add(cinqPartie);
         choixPartie.add(panelLargeur);
         choixPartie.add(panelLongeur);
+        choixPartie.add(panelNbrPartie);
         choixPartie.add(jvalider);
         setContentPane(choixPartie);
     }
@@ -256,212 +276,63 @@ public class Fenetre extends JFrame {
         d.showMessageDialog(this, msg, "Message", JOptionPane.ERROR_MESSAGE);
         JDialog fenErr = d.createDialog(this, "Message");
     }
-    public void display(){
-        setVisible(true);
+
+    public JRadioButton getUnePartie() {
+        return unePartie;
     }
 
-    public void undisplay(){
-        setVisible(false);
+    public JRadioButton getTroisPartie() {
+        return troisPartie;
     }
 
-    public void setBoutonJeton(BoutonJeton boutonJeton) {
-        this.boutonJeton = boutonJeton;
+    public JRadioButton getCinqPartie() {
+        return cinqPartie;
     }
 
-    public BoutonPersonaliserPartie getBoutonPersonaliserPartie() {
-        return boutonPersonaliserPartie;
-    }
+    public JButton getQuitter() { return quitter; }
 
-    public void setBoutonPersonaliserPartie(BoutonPersonaliserPartie boutonPersonaliserPartie) {
-        this.boutonPersonaliserPartie = boutonPersonaliserPartie;
-    }
+    public JButton getAcceuil() { return acceuil; }
 
-    public JButton getQuitter() {
-        return quitter;
-    }
-
-    public void setQuitter(JButton quitter) {
-        this.quitter = quitter;
-    }
-
-    public JButton getAcceuil() {
-        return acceuil;
-    }
-
-    public void setAcceuil(JButton acceuil) {
-        this.acceuil = acceuil;
-    }
-
-    public JButton getRecommencer() {
-        return recommencer;
-    }
-
-    public void setRecommencer(JButton recommencer) {
-        this.recommencer = recommencer;
-    }
-
-    public Model getModel() {
-        return model;
-    }
-
-    public JLabel getTypePartie() {
-        return typePartie;
-    }
-
-    public void setTypePartie(JLabel typePartie) {
-        this.typePartie = typePartie;
-    }
+    public JButton getRecommencer() { return recommencer; }
 
     public JButton getUnJoueur() {
         return unJoueur;
-    }
-
-    public void setUnJoueur(JButton unJoueur) {
-        this.unJoueur = unJoueur;
     }
 
     public JButton getJoueurVsJoueur() {
         return joueurVsJoueur;
     }
 
-    public void setJoueurVsJoueur(JButton joueurVsJoueur) {
-        this.joueurVsJoueur = joueurVsJoueur;
-    }
-
-    public JLabel getParametrerLaPartie() {
-        return parametrerLaPartie;
-    }
-
-    public void setParametrerLaPartie(JLabel parametrerLaPartie) {
-        this.parametrerLaPartie = parametrerLaPartie;
-    }
-
     public JButton getClassique() {
         return classique;
-    }
-
-    public void setClassique(JButton classique) {
-        this.classique = classique;
     }
 
     public JButton getPerssonalise() {
         return perssonalise;
     }
 
-    public void setPerssonalise(JButton perssonalise) {
-        this.perssonalise = perssonalise;
-    }
-
     public JButton getRetour() {
         return retour;
-    }
-
-    public void setRetour(JButton retour) {
-        this.retour = retour;
-    }
-
-    public BoutonJeton getBoutonJeton() {
-        return boutonJeton;
-    }
-
-    public void setModel(Model model) {
-        this.model = model;
-    }
-
-    public JButton[][] getPlateau() {
-        return plateau;
-    }
-
-    public void setPlateau(JButton[][] plateau) {
-        this.plateau = plateau;
-    }
-
-    public ImageIcon getJetonVide() {
-        return jetonVide;
-    }
-
-    public void setJetonVide(ImageIcon jetonVide) {
-        this.jetonVide = jetonVide;
     }
 
     public ImageIcon getJetonJaune() {
         return jetonJaune;
     }
 
-    public void setJetonJaune(ImageIcon jetonJaune) {
-        this.jetonJaune = jetonJaune;
-    }
-
     public ImageIcon getJetonRouge() {
         return jetonRouge;
-    }
-
-    public void setJetonRouge(ImageIcon jetonRouge) {
-        this.jetonRouge = jetonRouge;
     }
 
     public JLabel getJoueurCourant() {
         return joueurCourant;
     }
 
-    public void setJoueurCourant(JLabel joueurCourant) {
-        this.joueurCourant = joueurCourant;
-    }
-
-    public JLabel getTailleGrille() {
-        return tailleGrille;
-    }
-
-    public void setTailleGrille(JLabel tailleGrille) {
-        this.tailleGrille = tailleGrille;
-    }
-
     public JTextField getLargeur() {
         return largeur;
     }
 
-    public void setLargeur(JTextField largeur) {
-        this.largeur = largeur;
-    }
-
     public JTextField getLongeur() {
         return longeur;
-    }
-
-    public void setLongeur(JTextField longeur) {
-        this.longeur = longeur;
-    }
-
-    public JButton getValiderPartie() {
-        return validerPartie;
-    }
-
-    public void setValiderPartie(JButton validerPartie) {
-        this.validerPartie = validerPartie;
-    }
-
-    public JLabel getOu() {
-        return ou;
-    }
-
-    public void setOu(JLabel ou) {
-        this.ou = ou;
-    }
-
-    public ControlBouton getControlBut() {
-        return controlBut;
-    }
-
-    public void setControlBut(ControlBouton controlBut) {
-        this.controlBut = controlBut;
-    }
-
-    public ControlBouton getControlButon() {
-        return controlButon;
-    }
-
-    public void setControlButon(ControlBouton controlButon) {
-        this.controlButon = controlButon;
     }
 }
 

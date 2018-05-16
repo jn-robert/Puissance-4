@@ -30,6 +30,7 @@ public class ControlBouton implements ActionListener {
         }
 
         if (e.getSource() == fen.getClassique()){
+            model.partieClassique();
             fen.changerVersion(3);
         }
         if (e.getSource()==fen.getPerssonalise()){
@@ -39,7 +40,7 @@ public class ControlBouton implements ActionListener {
             System.exit(0);
         }
         if (e.getSource()==fen.getRecommencer()){
-            model.init();
+            model.reset();
             fen.changerVersion(3);
         }
 

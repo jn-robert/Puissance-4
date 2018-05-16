@@ -1,11 +1,10 @@
 public class Grille {
     protected static int longueurX ;
-    protected static int largeurY ;
-
+    protected static int largeurY;
 
     public Grille(int x, int y){
-        this.longueurX = x;
         this.largeurY = y;
+        this.longueurX = x;
     }
 
     public static boolean estGagnee(int x, int y, Pion[][] grille){
@@ -15,7 +14,7 @@ public class Grille {
     }
 
     public static boolean ligneGagnante(int x,int y,Pion[][] grid){
-        if(y > largeurY-4)
+        if(y >= largeurY-4)
             return  false;
         if(grid[x][y] != null && grid[x][y] == grid[x][y+1] && grid[x][y] == grid[x][y+2] && grid[x][y] == grid[x][y+3])
             return true;
@@ -46,4 +45,3 @@ public class Grille {
         return false;
     }
 }
-
