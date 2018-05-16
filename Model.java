@@ -39,13 +39,14 @@ public class Model {
         grille[i][j] = p;
     }
 
-    public boolean test(int i, int y, Pion[][] grille){
+    public boolean test(Pion[][] grille){
         boolean result=false;
-        while (!Grille.estGagnee(i,y,grille) && i<grille.length-3 && y<grille[i].length-3 ){
-            i++;
-        }
-        if (Grille.estGagnee(i,y,grille)){
-            result = true;
+        for(int i=0; i<grille.length;i++){
+            for(int j=0; j<grille[i].length;j++){
+                if (Grille.estGagnee(i,y,grille)){
+                    result = true;
+                }        
+            }
         }
         return result;
     }
