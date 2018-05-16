@@ -25,7 +25,7 @@ public class ControlBouton implements ActionListener {
         if (e.getSource() == fen.getUnJoueur()){
             fen.changerVersion(2);
         }
-        if (e.getSource() == fen.getRetour()){
+        if (e.getSource() == fen.getRetour() || e.getSource()== fen.getAcceuil()){
             fen.changerVersion(1);
         }
 
@@ -39,6 +39,7 @@ public class ControlBouton implements ActionListener {
             System.exit(0);
         }
         if (e.getSource()==fen.getRecommencer()){
+            model.init();
             fen.changerVersion(3);
         }
 

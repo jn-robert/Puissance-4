@@ -20,12 +20,12 @@ public class BoutonPersonaliserPartie implements ActionListener {
             fen.afficheMessage("Il faut saisir des nombre entiers");
             return;
         }
-        if (model.getLargeurPuissance4()<4 || model.getLargeurPuissance4()>20 ){
-            fen.afficheMessage("la largeur doit etre comprise entre 4 et 20 ");
+        if (model.getLargeurPuissance4()<4 || model.getLargeurPuissance4()>15 ){
+            fen.afficheMessage("la largeur doit etre comprise entre 4 et 15 ");
             return;
         }
-        if (model.getLongeurPuissance4()<4 || model.getLongeurPuissance4()>20){
-            fen.afficheMessage("la longeur doit etre comprise entre 4 et 20");
+        if (model.getLongeurPuissance4()<4 || model.getLongeurPuissance4()>15){
+            fen.afficheMessage("la longeur doit etre comprise entre 4 et 15");
             return;
         }
         model.init();

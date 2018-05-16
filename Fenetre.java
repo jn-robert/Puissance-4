@@ -37,6 +37,7 @@ public class Fenetre extends JFrame {
 // pour la fin de partie;
     private JButton recommencer;
     private JButton quitter;
+    private JButton acceuil;
 
     public Fenetre(Model model) {
         this.model = model;
@@ -102,10 +103,12 @@ public class Fenetre extends JFrame {
     }
 
     public void creerWidjetFin(){
+        acceuil = new JButton("Accueil");
         recommencer = new JButton("Rejouer");
         quitter = new JButton("Quitter");
         recommencer.addActionListener(controlButon);
         quitter.addActionListener(controlButon);
+        acceuil.addActionListener(controlButon);
     }
 
     public void ajouterWidgetVersion1(){
@@ -192,6 +195,7 @@ public class Fenetre extends JFrame {
         JPanel jPanel = new JPanel();
         jPanel.add(quitter);
         jPanel.add(recommencer);
+        jPanel.add(acceuil);
         setContentPane(jPanel);
     }
 
@@ -278,6 +282,14 @@ public class Fenetre extends JFrame {
 
     public void setQuitter(JButton quitter) {
         this.quitter = quitter;
+    }
+
+    public JButton getAcceuil() {
+        return acceuil;
+    }
+
+    public void setAcceuil(JButton acceuil) {
+        this.acceuil = acceuil;
     }
 
     public JButton getRecommencer() {

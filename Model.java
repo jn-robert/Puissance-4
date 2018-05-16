@@ -17,8 +17,6 @@ public class Model {
     public Model(){
         j1 = new Pion("rouge");
         j2 = new Pion("jaune");
-
-
         boolean r= ( Math.random() >= 0.5 );
         if (r){
             p1 = true;
@@ -51,29 +49,14 @@ public class Model {
         grille = new Pion[longeurPuissance4][largeurPuissance4];
     }
 
-    public int[][] getJeu() {
-        return jeu;
-    }
-
-    public void setJeu(int[][] jeu) {
-        this.jeu = jeu;
-    }
 
 
     public Pion getJ1() {
         return j1;
     }
 
-    public void setJ1(Pion j1) {
-        this.j1 = j1;
-    }
-
     public Pion getJ2() {
         return j2;
-    }
-
-    public void setJ2(Pion j2) {
-        this.j2 = j2;
     }
 
     public boolean isP1() {
@@ -92,28 +75,8 @@ public class Model {
         this.p2 = p2;
     }
 
-    public int getChoix1() {
-        return choix1;
-    }
-
-    public void setChoix1(int choix1) {
-        this.choix1 = choix1;
-    }
-
-    public int getChoix2() {
-        return choix2;
-    }
-
-    public void setChoix2(int choix2) {
-        this.choix2 = choix2;
-    }
-
     public Pion[][] getGrille() {
         return grille;
-    }
-
-    public void setGrille(Pion[][] grille) {
-        this.grille = grille;
     }
 
     public int getLargeurPuissance4() {
