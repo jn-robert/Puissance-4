@@ -43,7 +43,7 @@ public class Model {
         boolean result=false;
         for(int i=0; i<grille.length;i++){
             for(int j=0; j<grille[i].length;j++){
-                if (Grille.estGagnee(i,y,grille)){
+                if (Grille.estGagnee(i,j,grille)){
                     result = true;
                 }        
             }

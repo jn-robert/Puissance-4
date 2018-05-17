@@ -51,6 +51,7 @@ public class Fenetre extends JFrame {
         pack();
         setTitle("Puissance 4");
         setVisible(true);
+        setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
