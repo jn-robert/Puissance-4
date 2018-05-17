@@ -1,91 +1,128 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Fenetre extends JFrame {
-
-    private JLabel nbJ;
+    private BoutonJeton boutonJeton;
+    private BoutonPersonaliserPartie boutonPersonaliserPartie;
+ // Bouton pour la premiere fenetre ( Joueur vs Ia ou joueur vs joueurs)
+    private JLabel  typePartie;
     private JLabel ou;
-    private JButton bc;
-    private JButton bc2;
+    private JButton unJoueur;
+    private JButton joueurVsJoueur;
     private ControlBouton controlBut;
 
-
-    private JLabel nbJ2;
-    private JButton b1;
-    private JButton b2;
-    private JButton b3;
-    private JButton br;
+// Bouton pour la seconde fenetre ou on choisi le type de partie( classique ou personnaliser)
+    private JLabel parametrerLaPartie;
+    private JButton classique;
+    private JButton perssonalise;
+    private JButton retour;
     private ControlBouton controlButon;
-
-    Model model;
-    JButton[][] plateau;
-    BoutonJeton2 boutonJeton2;
-    ImageIcon jetonVide;
-    ImageIcon jetonJaune;
-    ImageIcon jetonRouge;
-    JLabel joueurCourant;
-
+// Bouton pour le jeu
+    private Model model;
+    private JButton[][] plateau;
+    private ImageIcon jetonVide;
+    private ImageIcon jetonJaune;
+    private ImageIcon jetonRouge;
+    private JLabel joueurCourant;
+// pour parametrer la partie
+    private JLabel tailleGrille;
+    private JTextField largeur;
+    private JTextField longeur;
+    private JButton validerPartie;
+    private JLabel labelLargeur;
+    private JLabel labelLongeur;
+    private JLabel nbrParties;
+    private JRadioButton unePartie;
+    private JRadioButton troisPartie;
+    private JRadioButton cinqPartie;
+    private ButtonGroup boutonNbrparties;
+// pour la fin de partie;
+    private JButton recommencer;
+    private JButton quitter;
+    private JButton acceuil;
 
     public Fenetre(Model model) {
-
         this.model = model;
-
         creerWidget1();
         ajouterWidgetVersion1();
-
-//        setSize(280,280);                                // Fixe la taille par défaut
         pack();
         setTitle("Puissance 4");
-        setVisible(true);                                // Affiche la fenetre
+        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
     public void creerWidget1() {
 
-        // joueur
-        bc = new JButton("1 joueur");
-        controlBut = new ControlBouton(this);
-        bc.addActionListener(controlBut);
-        bc2 = new JButton("2 joueur");
-        controlBut = new ControlBouton(this);
-        bc2.addActionListener(controlBut);
+        unJoueur = new JButton("Joueur vs ordinateur");
+        controlBut = new ControlBouton(this,model);
+        unJoueur.addActionListener(controlBut);
+        joueurVsJoueur= new JButton("Joueur vs Joueur");
+        controlBut = new ControlBouton(this,model);
+        joueurVsJoueur.addActionListener(controlBut);
 
-
-        //Text
-        nbJ = new JLabel("Nombre de Joueurs : ");
+        typePartie = new JLabel("Type de partie :");
         ou = new JLabel("OU");
 
 
     }
-
     public void creerWidget2(){
-        nbJ2 = new JLabel("Selectionnez la taille de la Grille  : ");
+        parametrerLaPartie = new JLabel("Porfil de la partie :");
 
-        b1 = new JButton("classique");
-        b2 = new JButton(" 14 * 12 ");
-        b3 = new JButton(" Personnalisé");
-        br = new JButton("Retour");
+        classique = new JButton("classique");
+        perssonalise = new JButton(" Personnalisé");
+        retour = new JButton("Retour");
 
-        controlButon = new ControlBouton(this);
+        controlButon = new ControlBouton(this,model);
 
-        b1.addActionListener(controlButon);
-        br.addActionListener(controlButon);
+        classique.addActionListener(controlButon);
+        perssonalise.addActionListener(controlButon);
+        retour.addActionListener(controlButon);
+    }
+
+    public void creerWidjetChoixPartie(){
+        nbrParties = new JLabel("Nombre de parties pour gagner : ");
+        boutonNbrparties = new ButtonGroup();
+        cinqPartie = new JRadioButton("5");
+        troisPartie = new JRadioButton("3");
+        unePartie = new JRadioButton("1",true);
+        boutonNbrparties.add(unePartie);
+        boutonNbrparties.add(troisPartie);
+        boutonNbrparties.add(cinqPartie);
+        labelLargeur = new JLabel("Nombre de colonnes :");
+        labelLongeur = new JLabel("Profondeur des colonnes :");
+        boutonPersonaliserPartie = new BoutonPersonaliserPartie(this,model);
+        tailleGrille = new JLabel("Taille de votre plateau de jeux :");
+        largeur = new JTextField("");
+        largeur.setColumns(10);
+        longeur = new JTextField("");
+        largeur.setColumns(10);
+        validerPartie = new JButton("Valider");
     }
 
     public void creerJeu(){
-        plateau = new JButton[6][7];
-        boutonJeton2 = new BoutonJeton2(model,this);
+        plateau = new JButton[model.getLongeurPuissance4()][model.getLargeurPuissance4()];
+        boutonJeton = new BoutonJeton(model,this);
         jetonVide = new ImageIcon("jetonVide.png");
         jetonJaune = new ImageIcon("jetonJaune.png");
         jetonRouge = new ImageIcon("jetonRouge.png");
+        new Grille(model.getLongeurPuissance4(),model.getLargeurPuissance4());
         if (model.isP1()){
             joueurCourant= new JLabel("Joueur rouge commence");
         }
         else joueurCourant = new JLabel("joueur jaune commence");
     }
 
-
+    public void creerWidjetFin(){
+        acceuil = new JButton("Accueil");
+        recommencer = new JButton("Rejouer");
+        quitter = new JButton("Quitter");
+        recommencer.addActionListener(controlButon);
+        quitter.addActionListener(controlButon);
+        acceuil.addActionListener(controlButon);
+    }
 
     public void ajouterWidgetVersion1(){
         JPanel pgrandPanel = new JPanel(new GridLayout(5,3));
@@ -94,10 +131,10 @@ public class Fenetre extends JFrame {
         pgrandPanel.setBorder(border);
 
 
-        pgrandPanel.add(nbJ);
-        pgrandPanel.add(bc);
+        pgrandPanel.add(typePartie);
+        pgrandPanel.add(unJoueur);
         pgrandPanel.add(ou);
-        pgrandPanel.add(bc2);
+        pgrandPanel.add(joueurVsJoueur);
         pgiga.add(pgrandPanel);
 
         setContentPane(pgiga);
@@ -111,11 +148,10 @@ public class Fenetre extends JFrame {
         JPanel pgrand = new JPanel();
         JPanel pgrandM = new JPanel();
 
-        pgrandPane1.add(nbJ);
-        pgrandPane1.add(b1);
-        pgrandPane1.add(b2);
-        pgrandPane1.add(b3);
-        pgrandPane1.add(br);
+        pgrandPane1.add(parametrerLaPartie);
+        pgrandPane1.add(classique);
+        pgrandPane1.add(perssonalise);
+        pgrandPane1.add(retour);
 
         pgrand.add(pgrandPane1);
 
@@ -124,23 +160,49 @@ public class Fenetre extends JFrame {
         setContentPane(pgrandM);
     }
 
+    public void ajouterWidjetChoixPartie(){
+        JPanel panelNbrPartie = new JPanel();
+        JPanel panelLargeur = new JPanel();
+        JPanel panelLongeur = new JPanel();
+        JPanel choixPartie = new JPanel();
+        JPanel jvalider = new JPanel();
+        choixPartie.setLayout(new BoxLayout(choixPartie,1));
+        panelLargeur.setLayout(new BoxLayout(panelLargeur,0));
+        panelLongeur.setLayout(new BoxLayout(panelLongeur,0));
+        validerPartie.addActionListener(boutonPersonaliserPartie);
+        panelLargeur.add(labelLargeur);
+        panelLargeur.add(largeur);
+        panelLongeur.add(labelLongeur);
+        panelLongeur.add(longeur);
+        jvalider.add(validerPartie);
+        jvalider.add(retour);
+        panelNbrPartie.add(nbrParties);
+        panelNbrPartie.add(unePartie);
+        panelNbrPartie.add(troisPartie);
+        panelNbrPartie.add(cinqPartie);
+        choixPartie.add(panelLargeur);
+        choixPartie.add(panelLongeur);
+        choixPartie.add(panelNbrPartie);
+        choixPartie.add(jvalider);
+        setContentPane(choixPartie);
+    }
+
     public void ajouterWidgetJeu(){
         JPanel puissance4 = new JPanel();
         puissance4.setLayout(new BoxLayout(puissance4,BoxLayout.Y_AXIS));
         JPanel nomJoeur = new JPanel();
         nomJoeur.add(joueurCourant);
         JPanel Jplateau= new JPanel();
-        Jplateau.setLayout(new GridLayout(6,7));
-
+        Jplateau.setLayout(new GridLayout(model.getLongeurPuissance4(),model.getLargeurPuissance4()));
         Dimension tailleJeton=new Dimension(60, 60);
-        for(int i=0;i<plateau.length;i++){
-            for(int j=0;j<plateau[i].length;j++){
+        for(int i=0;i<model.getLongeurPuissance4();i++){
+            for(int j=0;j<model.getLargeurPuissance4();j++){
                 plateau[i][j] = new JButton();
-                plateau[i][j].addActionListener(boutonJeton2);
-                plateau[i][j].setPreferredSize(tailleJeton);
+                plateau[i][j].addActionListener(boutonJeton);
                 plateau[i][j].setIcon(jetonVide);
+                plateau[i][j].setPreferredSize(tailleJeton);
                 plateau[i][j].setBorderPainted(false);
-                plateau[i][j].setName(i+";"+j);
+                plateau[i][j].setName(""+j);
                 Jplateau.add(plateau[i][j]);
 
             }
@@ -149,12 +211,20 @@ public class Fenetre extends JFrame {
         puissance4.add(Jplateau);
         setContentPane(puissance4);
     }
+    public void ajouterWidjetFin(){
+        JPanel jPanel = new JPanel();
+        jPanel.add(quitter);
+        jPanel.add(recommencer);
+        jPanel.add(acceuil);
+        setContentPane(jPanel);
+    }
 
     public void changerVersion(int n){
         if (n == 1){
             creerWidget1();
             ajouterWidgetVersion1();
             pack();
+            setTitle("Puissance4");
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
@@ -162,6 +232,7 @@ public class Fenetre extends JFrame {
             creerWidget2();
             ajouterWidgetVersion2();
             pack();
+            setTitle("Puissance4");
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
@@ -169,6 +240,25 @@ public class Fenetre extends JFrame {
             creerJeu();
             ajouterWidgetJeu();
             pack();
+            setTitle("Puissance4");
+            setResizable(false);
+            setVisible(true);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+        if (n==4){
+            creerWidjetChoixPartie();
+            ajouterWidjetChoixPartie();
+            pack();
+            setTitle("Puissance4");
+            setResizable(false);
+            setVisible(true);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+        if(n==5){
+            creerWidjetFin();
+            ajouterWidjetFin();
+            pack();
+            setTitle("Puissance4");
             setResizable(false);
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -181,99 +271,68 @@ public class Fenetre extends JFrame {
     }
 
 
-    public void afficheErreur(String msgErreur){
+    public void afficheMessage(String msg){
         JOptionPane d = new JOptionPane();
-        d.showMessageDialog(this, msgErreur, "Message", JOptionPane.ERROR_MESSAGE);
+        d.showMessageDialog(this, msg, "Message", JOptionPane.ERROR_MESSAGE);
         JDialog fenErr = d.createDialog(this, "Message");
     }
 
-
-    public JLabel getNbJ() {
-        return nbJ;
+    public JRadioButton getUnePartie() {
+        return unePartie;
     }
 
-    public void setNbJ(JLabel nbJ) {
-        this.nbJ = nbJ;
+    public JRadioButton getTroisPartie() {
+        return troisPartie;
     }
 
-    public JLabel getOu() {
-        return ou;
+    public JRadioButton getCinqPartie() {
+        return cinqPartie;
     }
 
-    public void setOu(JLabel ou) {
-        this.ou = ou;
+    public JButton getQuitter() { return quitter; }
+
+    public JButton getAcceuil() { return acceuil; }
+
+    public JButton getRecommencer() { return recommencer; }
+
+    public JButton getUnJoueur() {
+        return unJoueur;
     }
 
-    public JButton getBc() {
-        return bc;
+    public JButton getJoueurVsJoueur() {
+        return joueurVsJoueur;
     }
 
-    public void setBc(JButton bc) {
-        this.bc = bc;
+    public JButton getClassique() {
+        return classique;
     }
 
-    public JButton getBc2() {
-        return bc2;
+    public JButton getPerssonalise() {
+        return perssonalise;
     }
 
-    public void setBc2(JButton bc2) {
-        this.bc2 = bc2;
+    public JButton getRetour() {
+        return retour;
     }
 
-    public ControlBouton getControlBut() {
-        return controlBut;
+    public ImageIcon getJetonJaune() {
+        return jetonJaune;
     }
 
-    public void setControlBut(ControlBouton controlBut) {
-        this.controlBut = controlBut;
+    public ImageIcon getJetonRouge() {
+        return jetonRouge;
     }
 
-    public JLabel getNbJ2() {
-        return nbJ2;
+    public JLabel getJoueurCourant() {
+        return joueurCourant;
     }
 
-    public void setNbJ2(JLabel nbJ2) {
-        this.nbJ2 = nbJ2;
+    public JTextField getLargeur() {
+        return largeur;
     }
 
-    public JButton getB1() {
-        return b1;
-    }
-
-    public void setB1(JButton b1) {
-        this.b1 = b1;
-    }
-
-    public JButton getB2() {
-        return b2;
-    }
-
-    public void setB2(JButton b2) {
-        this.b2 = b2;
-    }
-
-    public JButton getB3() {
-        return b3;
-    }
-
-    public void setB3(JButton b3) {
-        this.b3 = b3;
-    }
-
-    public JButton getBr() {
-        return br;
-    }
-
-    public void setBr(JButton br) {
-        this.br = br;
-    }
-
-    public ControlBouton getControlButon() {
-        return controlButon;
-    }
-
-    public void setControlButon(ControlBouton controlButon) {
-        this.controlButon = controlButon;
+    public JTextField getLongeur() {
+        return longeur;
     }
 }
 

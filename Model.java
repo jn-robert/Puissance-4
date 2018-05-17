@@ -10,14 +10,19 @@ public class Model {
     private int choix2;
     private int [][] jeu;
     private Pion[][] grille;
-    private Pion[] grille1D;
-
+    private int largeurPuissance4;
+    private int longeurPuissance4;
+    private int nombreDeVictoireJoueurJaune;
+    private int nombreDeVictoireJoueurRouge;
+    private int nombreDePartie;
+    private int nombreEgalite;
     public Model(){
+        nombreDeVictoireJoueurRouge=0;
+        nombreDeVictoireJoueurJaune=0;
+        nombreDePartie=1;
+        nombreEgalite=0;
         j1 = new Pion("rouge");
         j2 = new Pion("jaune");
-        jeu = new int [6][7];
-        grille = new Pion[6][7];
-
         boolean r= ( Math.random() >= 0.5 );
         if (r){
             p1 = true;
@@ -28,33 +33,71 @@ public class Model {
             p1=false;
         }
 
-        grille1D = new Pion[42];
+    }
+
+    public void rempli(int i, int j, Pion p){
+        grille[i][j] = p;
+    }
+
+    public boolean test(Pion[][] grille){
+        boolean result=false;
+        for(int i=0; i<grille.length;i++){
+            for(int j=0; j<grille[i].length;j++){
+                if (Grille.estGagnee(i,y,grille)){
+                    result = true;
+                }        
+            }
+        }
+        return result;
+    }
+
+    public void reset(){
+        init();
+        nombreDeVictoireJoueurJaune=0;
+        nombreDeVictoireJoueurRouge=0;
+        nombreEgalite=0;
+    }
+
+    public void init(){
+        jeu = new int [longeurPuissance4][largeurPuissance4];
+        grille = new Pion[longeurPuissance4][largeurPuissance4];
+    }
+
+    public void partieJouer(String gagnant){
+        nombreDePartie--;
 
     }
 
-    public int[][] getJeu() {
-        return jeu;
+    public int getNombreDeVictoireJoueurJaune() {
+        return nombreDeVictoireJoueurJaune;
     }
 
-    public void setJeu(int[][] jeu) {
-        this.jeu = jeu;
+    public void setNombreDeVictoireJoueurJaune(int nombreDeVictoireJoueurJaune) {
+        this.nombreDeVictoireJoueurJaune = nombreDeVictoireJoueurJaune;
     }
 
+    public int getNombreDeVictoireJoueurRouge() {
+        return nombreDeVictoireJoueurRouge;
+    }
+
+    public void setNombreDeVictoireJoueurRouge(int nombreDeVictoireJoueurRouge) {
+        this.nombreDeVictoireJoueurRouge = nombreDeVictoireJoueurRouge;
+    }
+
+    public int getNombreDePartie() {
+        return nombreDePartie;
+    }
+
+    public void setNombreDePartie(int nombreDePartie) {
+        this.nombreDePartie = nombreDePartie;
+    }
 
     public Pion getJ1() {
         return j1;
     }
 
-    public void setJ1(Pion j1) {
-        this.j1 = j1;
-    }
-
     public Pion getJ2() {
         return j2;
-    }
-
-    public void setJ2(Pion j2) {
-        this.j2 = j2;
     }
 
     public boolean isP1() {
@@ -73,43 +116,30 @@ public class Model {
         this.p2 = p2;
     }
 
-    public int getChoix1() {
-        return choix1;
-    }
-
-    public void setChoix1(int choix1) {
-        this.choix1 = choix1;
-    }
-
-    public int getChoix2() {
-        return choix2;
-    }
-
-    public void setChoix2(int choix2) {
-        this.choix2 = choix2;
-    }
     public Pion[][] getGrille() {
         return grille;
     }
 
-    public void setGrille(Pion[][] grille) {
-        this.grille = grille;
+    public int getLargeurPuissance4() {
+        return largeurPuissance4;
     }
 
-    public boolean test(int i, int y,Pion[][] grille){
-        boolean result=false;
-        while (!Grille.estGagnee(i,y,grille) && i<grille.length-3){
-            i++;
-        }
-        if (Grille.estGagnee(i,y,grille)){
-            result = true;
-        }
-        return result;
+    public void setLargeurPuissance4(int largeurPuissance4) {
+        this.largeurPuissance4 = largeurPuissance4;
     }
 
-
-    public void rempli(int i, int j, Pion p){
-        grille[i][j] = p;
+    public int getLongeurPuissance4() {
+        return longeurPuissance4;
     }
 
+    public void setLongeurPuissance4(int longeurPuissance4) {
+        this.longeurPuissance4 = longeurPuissance4;
+    }
+
+    public void partieClassique() {
+        largeurPuissance4=7;
+        longeurPuissance4=6;
+        nombreDePartie=1;
+        init();
+    }
 }

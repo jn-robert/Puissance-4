@@ -1,9 +1,6 @@
 public class Grille {
-    protected static int longueurX = 6;
-    protected static int largeurY= 7;
-
-    public Grille(){
-    }
+    protected static int longueurX ;
+    protected static int largeurY;
 
     public Grille(int x, int y){
         this.largeurY = y;
@@ -48,4 +45,3 @@ public class Grille {
         return false;
     }
 }
-
