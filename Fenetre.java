@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Fenetre extends JFrame {
+
+    private ControlKey controlKey;
+
     private BoutonJeton boutonJeton;
     private BoutonPersonaliserPartie boutonPersonaliserPartie;
  // Bouton pour la premiere fenetre ( Joueur vs Ia ou joueur vs joueurs)
@@ -44,6 +47,13 @@ public class Fenetre extends JFrame {
     private JButton quitter;
     private JButton acceuil;
 
+//    Menu
+    private JMenuItem itemInterface1;
+    private JMenuItem itemInterface2;
+    private ControlMenu controlMen;
+    private JMenuBar barMenu;
+    private JMenu menu;
+
     public Fenetre(Model model) {
         this.model = model;
         creerWidget1();
@@ -55,6 +65,7 @@ public class Fenetre extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
+
     public void creerWidget1() {
 
         unJoueur = new JButton("Joueur vs ordinateur");
@@ -77,10 +88,12 @@ public class Fenetre extends JFrame {
         retour = new JButton("Retour");
 
         controlButon = new ControlBouton(this,model);
+//        controlKey = new ControlKey(model,this);
 
         classique.addActionListener(controlButon);
         perssonalise.addActionListener(controlButon);
         retour.addActionListener(controlButon);
+        retour.addKeyListener(controlButon);
     }
 
     public void creerWidjetChoixPartie(){
@@ -104,6 +117,15 @@ public class Fenetre extends JFrame {
     }
 
     public void creerJeu(){
+        //        Menu
+        itemInterface1 = new JMenuItem("Retour choix joueurs");
+
+        itemInterface2 = new JMenuItem("Retour choix partie");
+
+        controlMen = new ControlMenu(this);
+        itemInterface1.addActionListener(controlMen);
+        itemInterface2.addActionListener(controlMen);
+
         plateau = new JButton[model.getLongeurPuissance4()][model.getLargeurPuissance4()];
         boutonJeton = new BoutonJeton(model,this);
         jetonVide = new ImageIcon("jetonVide.png");
@@ -189,6 +211,7 @@ public class Fenetre extends JFrame {
     }
 
     public void ajouterWidgetJeu(){
+        creerMenu();
         JPanel puissance4 = new JPanel();
         puissance4.setLayout(new BoxLayout(puissance4,BoxLayout.Y_AXIS));
         JPanel nomJoeur = new JPanel();
@@ -264,6 +287,26 @@ public class Fenetre extends JFrame {
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
+    }
+
+    public void creerMenu(){
+
+        barMenu = new JMenuBar();
+        menu = new JMenu("Options");
+
+        menu.add(itemInterface1);
+        menu.add(itemInterface2);
+
+        barMenu.add(menu);
+        setJMenuBar(barMenu);
+    }
+
+    public JMenuItem getItemInterface1() {
+        return itemInterface1;
+    }
+
+    public JMenuItem getItemInterface2() {
+        return itemInterface2;
     }
 
 
