@@ -259,9 +259,9 @@ public class Model {
             }
         }
 
-        //On compte le nombre de séries de 2 pions alignés de chacun des joueurs
+        //On compte le nombre de séries de 3 pions alignés de chacun des joueurs
 
-        nb_series(grille,2);
+        nb_series(grille,3);
 
         return series_j1 - series_jOrdi;
     }
@@ -372,7 +372,7 @@ public class Model {
             return jOrdi;
         }
         else{
-            //Si le jeu n'est pas fini et que personne n'a gagné, on renvoie 0
+            //Si le jeu n'est pas fini et que personne n'a gagné, on renvoie null
             for(int i=0;i<6;i++){
                 for(int j=0;j<7;j++){
                     if(grille[i][j] == null){
@@ -382,7 +382,7 @@ public class Model {
             }
         }
 
-        //Si le jeu est fini et que personne n'a gagné, on renvoie 3
+        //Si le jeu est fini et que personne n'a gagné, on renvoie un pionfactice
         return PionFin;
     }
 
