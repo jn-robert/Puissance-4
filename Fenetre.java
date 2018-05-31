@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 public class Fenetre extends JFrame {
 
     private BoutonJeton boutonJeton;
+    private BoutonJetonVsIA boutonJetonVsIA;
     private BoutonPersonaliserPartie boutonPersonaliserPartie;
  // Bouton pour la premiere fenetre ( Joueur vs Ia ou joueur vs joueurs)
     private JLabel  typePartie;
@@ -138,6 +139,24 @@ public class Fenetre extends JFrame {
         if (model.isP2()) {
             joueurCourant = new JLabel("joueur jaune commence");
         }
+    }
+
+    public void creerJeuIA(){
+        //        Menu
+        itemInterface1 = new JMenuItem("Retour choix joueurs");
+
+        itemInterface2 = new JMenuItem("Retour choix partie");
+
+        controlMen = new ControlMenu(this);
+        itemInterface1.addActionListener(controlMen);
+        itemInterface2.addActionListener(controlMen);
+
+        plateau = new JButton[model.getLongeurPuissance4()][model.getLargeurPuissance4()];
+        boutonJetonVsIA = new BoutonJetonVsIA(model,this);
+        jetonVide = new ImageIcon("jetonVide.png");
+        jetonJaune = new ImageIcon("jetonJaune.png");
+        jetonRouge = new ImageIcon("jetonRouge.png");
+        new Grille(model.getLongeurPuissance4(),model.getLargeurPuissance4());
         if (model.isP1Ordi()){
             joueurCourant = new JLabel("(Vous) joueur rouge commence");
         }
@@ -243,6 +262,32 @@ public class Fenetre extends JFrame {
         puissance4.add(Jplateau);
         setContentPane(puissance4);
     }
+
+    public void ajouterWidgetJeuvsIA(){
+        creerMenu();
+        JPanel puissance4 = new JPanel();
+        puissance4.setLayout(new BoxLayout(puissance4,BoxLayout.Y_AXIS));
+        JPanel nomJoeur = new JPanel();
+        nomJoeur.add(joueurCourant);
+        JPanel Jplateau= new JPanel();
+        Jplateau.setLayout(new GridLayout(model.getLongeurPuissance4(),model.getLargeurPuissance4()));
+        Dimension tailleJeton=new Dimension(60, 60);
+        for(int i=0;i<model.getLongeurPuissance4();i++){
+            for(int j=0;j<model.getLargeurPuissance4();j++){
+                plateau[i][j] = new JButton();
+                plateau[i][j].addActionListener(boutonJetonVsIA);
+                plateau[i][j].setIcon(jetonVide);
+                plateau[i][j].setPreferredSize(tailleJeton);
+                plateau[i][j].setBorderPainted(false);
+                plateau[i][j].setName(""+j);
+                Jplateau.add(plateau[i][j]);
+
+            }
+        }
+        puissance4.add(nomJoeur);
+        puissance4.add(Jplateau);
+        setContentPane(puissance4);
+    }
     public void ajouterWidjetFin(){
         JPanel jPanel = new JPanel();
         jPanel.add(quitter);
@@ -292,6 +337,14 @@ public class Fenetre extends JFrame {
             pack();
             setTitle("Puissance4");
             setResizable(false);
+            setVisible(true);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+        if (n==6){
+            creerJeuIA();
+            ajouterWidgetJeuvsIA();
+            setTitle("Puissance 4");
+//            setResizable(false);
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }

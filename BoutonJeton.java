@@ -23,7 +23,7 @@ public class BoutonJeton implements ActionListener {
         int j = Integer.parseInt(String.valueOf(jeton.getName()));
         if (compteurJetons< tailleTab) {
             if (model.isP1()) {
-                int i = testColonne(j);
+                int i = model.testColonne(j);
                 try {
                     model.getGrille();
                     model.rempli(i, j, model.getJ1());
@@ -44,7 +44,7 @@ public class BoutonJeton implements ActionListener {
                 }
 
             } else if (model.isP2()) {
-                int i = testColonne(j);
+                int i = model.testColonne(j);
                 try {
                     model.getGrille();
                     model.rempli(i, j, model.getJ2());
@@ -68,16 +68,4 @@ public class BoutonJeton implements ActionListener {
                 fen.changerVersion(5);
         }
     }
-
-    public int testColonne(int colonne){
-        int test = model.getLongeurPuissance4()-1;
-        for (int i=model.getLongeurPuissance4()-1; i>=0; i--){
-            if (model.getGrille()[i][colonne] != null){
-                test--;
-            }
-        }
-        return test;
-    }
-
-
 }

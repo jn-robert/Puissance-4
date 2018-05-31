@@ -18,11 +18,11 @@ public class BoutonJetonVsIA implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        JButton jeton = (JButton) e.getSource();
-        int j = Integer.parseInt(String.valueOf(jeton.getName()));
         if (compteurJetons< tailleTab) {
             if (model.isP1Ordi()) {
-                int i = testColonne(j);
+                JButton jeton = (JButton) e.getSource();
+                int j = Integer.parseInt(String.valueOf(jeton.getName()));
+                int i = model.testColonne(j);
                 try {
                     model.getGrille();
                     model.rempli(i, j, model.getJ1());
@@ -43,8 +43,8 @@ public class BoutonJetonVsIA implements ActionListener {
                 }
 
             } else if (model.ispOrdi()) {
-                int i = testColonne(j);
-                try {
+                int j=model.coupsIA();
+                int i = model.testColonne(j);
                     model.getGrille();
                     model.rempli(i, j, model.getJ2());
                     fen.dessine(i, j, fen.getJetonJaune());
@@ -54,29 +54,14 @@ public class BoutonJetonVsIA implements ActionListener {
                         fen.getJoueurCourant().setText("(Vous) jeton rouge joue");
                         return;
                     }else{
-                        fen.afficheMessage("Puissance 4! "+model.getJ2()+" gagne");
+                        fen.afficheMessage("Puissance 4! IA gagne");
                         fen.changerVersion(5);
                     }
                     compteurJetons++;
-                } catch (ArrayIndexOutOfBoundsException ex) {
-                    fen.afficheMessage("Colonne pleine ,veuillez jouer ailleurs");
-                }
             }
         }else {
             fen.afficheMessage("Egalite");
             fen.changerVersion(5);
         }
     }
-
-    public int testColonne(int colonne){
-        int test = model.getLongeurPuissance4()-1;
-        for (int i=model.getLongeurPuissance4()-1; i>=0; i--){
-            if (model.getGrille()[i][colonne] != null){
-                test--;
-            }
-        }
-        return test;
-    }
-
-
 }

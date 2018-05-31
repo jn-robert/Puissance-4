@@ -37,7 +37,8 @@ public class ControlBouton implements ActionListener {
             fen.changerVersion(3);
         }
         if (e.getSource() == fen.getClassique() && !fen.isNbJoueurs()){
-
+            model.partieClassiqueIA();
+            fen.changerVersion(6);
         }
         if (e.getSource()==fen.getPerssonalise()){
             fen.changerVersion(4);
@@ -45,14 +46,14 @@ public class ControlBouton implements ActionListener {
         if (e.getSource()==fen.getQuitter()){
             System.exit(0);
         }
-        if (e.getSource()==fen.getRecommencer()){
+        if (e.getSource()==fen.getRecommencer() && fen.isNbJoueurs()){
             model.reset();
             fen.changerVersion(3);
         }
-
-
-
-
+        if (e.getSource()==fen.getRecommencer() && !fen.isNbJoueurs()){
+            model.reset();
+            fen.changerVersion(6);
+        }
     }
 
 }
