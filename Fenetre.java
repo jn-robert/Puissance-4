@@ -6,8 +6,6 @@ import java.awt.event.ActionListener;
 
 public class Fenetre extends JFrame {
 
-    private ControlKey controlKey;
-
     private BoutonJeton boutonJeton;
     private BoutonPersonaliserPartie boutonPersonaliserPartie;
  // Bouton pour la premiere fenetre ( Joueur vs Ia ou joueur vs joueurs)
@@ -54,6 +52,8 @@ public class Fenetre extends JFrame {
     private JMenuBar barMenu;
     private JMenu menu;
 
+    private boolean nbJoueurs;
+
     public Fenetre(Model model) {
         this.model = model;
         creerWidget1();
@@ -93,7 +93,7 @@ public class Fenetre extends JFrame {
         classique.addActionListener(controlButon);
         perssonalise.addActionListener(controlButon);
         retour.addActionListener(controlButon);
-        retour.addKeyListener(controlButon);
+//        retour.addKeyListener(controlButon);
     }
 
     public void creerWidjetChoixPartie(){
@@ -135,7 +135,15 @@ public class Fenetre extends JFrame {
         if (model.isP1()){
             joueurCourant= new JLabel("Joueur rouge commence");
         }
-        else joueurCourant = new JLabel("joueur jaune commence");
+        if (model.isP2()) {
+            joueurCourant = new JLabel("joueur jaune commence");
+        }
+        if (model.isP1Ordi()){
+            joueurCourant = new JLabel("(Vous) joueur rouge commence");
+        }
+        if (model.ispOrdi()){
+            joueurCourant = new JLabel("(IA) joueur jaune commence");
+        }
     }
 
     public void creerWidjetFin(){
@@ -378,5 +386,9 @@ public class Fenetre extends JFrame {
     public JTextField getLongeur() {
         return longeur;
     }
+
+    public boolean isNbJoueurs() { return nbJoueurs; }
+
+    public void setNbJoueurs(boolean nbJoueurs) { this.nbJoueurs = nbJoueurs; }
 }
 
