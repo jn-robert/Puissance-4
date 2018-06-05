@@ -343,8 +343,9 @@ public class Fenetre extends JFrame {
         if (n==6){
             creerJeuIA();
             ajouterWidgetJeuvsIA();
+            pack();
             setTitle("Puissance 4");
-//            setResizable(false);
+            setResizable(false);
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
