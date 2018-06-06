@@ -410,4 +410,8 @@ public class Model {
     public void setpOrdi(boolean pOrdi) {
         this.pOrdi = pOrdi;
     }
+
+    public ArrayList<Pion> getListJoueur() { return listJoueur; }
+
+    public void setListJoueur(ArrayList<Pion> listJoueur) { this.listJoueur = listJoueur; }
 }
