@@ -28,10 +28,13 @@ public class ControlBouton implements ActionListener {
             fen.changerVersion(2);
             fen.setNbJoueurs(false);
         }
+        if (e.getSource()==fen.getxJoueur()){
+            fen.changerVersion(7);
+        }
+
         if (e.getSource() == fen.getRetour() || e.getSource()== fen.getAcceuil()){
             fen.changerVersion(1);
         }
-
         if (e.getSource() == fen.getClassique() && fen.isNbJoueurs()){
             model.partieClassique();
             fen.changerVersion(3);

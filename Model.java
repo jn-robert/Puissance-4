@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -24,6 +25,8 @@ public class Model {
     private int series_jOrdi;
     private boolean troisDangerAligne=false;
 
+    private ArrayList<Pion> listJoueur;
+
     public Model(){
 
         nombreDeVictoireJoueurRouge=0;
@@ -46,6 +49,40 @@ public class Model {
             p1=false;
             pOrdi=true;
             p1Ordi=false;
+        }
+
+    }
+
+    public void multijoueur(int nbJoueur){
+        listJoueur = new ArrayList<>();
+        switch (nbJoueur)
+        {
+            case 3:
+                listJoueur.add(new Pion("rouge"));
+                listJoueur.add(new Pion("jaune"));
+                listJoueur.add(new Pion("bleu"));
+                break;
+            case 4:
+                listJoueur.add(new Pion("rouge"));
+                listJoueur.add(new Pion("jaune"));
+                listJoueur.add(new Pion("bleu"));
+                listJoueur.add(new Pion("orange"));
+                break;
+            case 5:
+                listJoueur.add(new Pion("rouge"));
+                listJoueur.add(new Pion("jaune"));
+                listJoueur.add(new Pion("bleu"));
+                listJoueur.add(new Pion("orange"));
+                listJoueur.add(new Pion("vert"));
+                break;
+            case 6:
+                listJoueur.add(new Pion("rouge"));
+                listJoueur.add(new Pion("jaune"));
+                listJoueur.add(new Pion("bleu"));
+                listJoueur.add(new Pion("orange"));
+                listJoueur.add(new Pion("vert"));
+                listJoueur.add(new Pion("violet"));
+                break;
         }
 
     }

@@ -3,17 +3,21 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Fenetre extends JFrame {
 
     private BoutonJeton boutonJeton;
     private BoutonJetonVsIA boutonJetonVsIA;
     private BoutonPersonaliserPartie boutonPersonaliserPartie;
+    private ButtonMultijoueur buttonNbJoueur;
+
  // Bouton pour la premiere fenetre ( Joueur vs Ia ou joueur vs joueurs)
     private JLabel  typePartie;
     private JLabel ou;
     private JButton unJoueur;
     private JButton joueurVsJoueur;
+    private JButton xJoueur;
     private ControlBouton controlBut;
 
 // Bouton pour la seconde fenetre ou on choisi le type de partie( classique ou personnaliser)
@@ -22,6 +26,11 @@ public class Fenetre extends JFrame {
     private JButton perssonalise;
     private JButton retour;
     private ControlBouton controlButon;
+
+// Selection multijoueur
+    private JLabel nbxJoueur;
+    private JTextField nbJoueur;
+
 // Bouton pour le jeu
     private Model model;
     private JButton[][] plateau;
@@ -72,15 +81,19 @@ public class Fenetre extends JFrame {
         unJoueur = new JButton("Joueur vs ordinateur");
         controlBut = new ControlBouton(this,model);
         unJoueur.addActionListener(controlBut);
+
         joueurVsJoueur= new JButton("Joueur vs Joueur");
         controlBut = new ControlBouton(this,model);
         joueurVsJoueur.addActionListener(controlBut);
 
+        xJoueur = new JButton("Multi joueurs");
+        controlBut = new ControlBouton(this,model);
+        xJoueur.addActionListener(controlBut);
+
         typePartie = new JLabel("Type de partie :");
         ou = new JLabel("OU");
-
-
     }
+
     public void creerWidget2(){
         parametrerLaPartie = new JLabel("Porfil de la partie :");
 
@@ -113,8 +126,31 @@ public class Fenetre extends JFrame {
         largeur = new JTextField("");
         largeur.setColumns(10);
         longeur = new JTextField("");
-        largeur.setColumns(10);
+        longeur.setColumns(10);
         validerPartie = new JButton("Valider");
+    }
+
+    public void creerWidgetNbJoueur(){
+        nbxJoueur = new JLabel("Nombre de joueurs");
+        nbJoueur = new JTextField();
+        validerPartie = new JButton("Valider");
+        buttonNbJoueur = new ButtonMultijoueur(model,this);
+    }
+
+    public void creerJeuMulti(){
+        //        Menu
+        itemInterface1 = new JMenuItem("Retour choix joueurs");
+
+        itemInterface2 = new JMenuItem("Retour choix partie");
+
+        controlMen = new ControlMenu(this);
+        itemInterface1.addActionListener(controlMen);
+        itemInterface2.addActionListener(controlMen);
+
+        plateau = new JButton[model.getLongeurPuissance4()][model.getLargeurPuissance4()];
+        jetonVide = new ImageIcon("jetonVide.png");
+        jetonJaune = new ImageIcon("jetonJaune.png");
+        jetonRouge = new ImageIcon("jetonRouge.png");
     }
 
     public void creerJeu(){
@@ -185,6 +221,7 @@ public class Fenetre extends JFrame {
         pgrandPanel.add(unJoueur);
         pgrandPanel.add(ou);
         pgrandPanel.add(joueurVsJoueur);
+        pgrandPanel.add(xJoueur);
         pgiga.add(pgrandPanel);
 
         setContentPane(pgiga);
@@ -235,6 +272,15 @@ public class Fenetre extends JFrame {
         choixPartie.add(panelNbrPartie);
         choixPartie.add(jvalider);
         setContentPane(choixPartie);
+    }
+
+    public void ajouterWidgetNbJoueur(){
+        JPanel panel = new JPanel();
+        panel.add(nbxJoueur);
+        panel.add(nbJoueur);
+        panel.add(validerPartie);
+        validerPartie.addActionListener(buttonNbJoueur);
+        setContentPane(panel);
     }
 
     public void ajouterWidgetJeu(){
@@ -288,6 +334,7 @@ public class Fenetre extends JFrame {
         puissance4.add(Jplateau);
         setContentPane(puissance4);
     }
+
     public void ajouterWidjetFin(){
         JPanel jPanel = new JPanel();
         jPanel.add(quitter);
@@ -346,6 +393,14 @@ public class Fenetre extends JFrame {
             pack();
             setTitle("Puissance 4");
             setResizable(false);
+            setVisible(true);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+        if (n==7){
+            creerWidgetNbJoueur();
+            ajouterWidgetNbJoueur();
+            pack();
+            setTitle("Puissance4");
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
@@ -409,6 +464,10 @@ public class Fenetre extends JFrame {
         return joueurVsJoueur;
     }
 
+    public JButton getxJoueur() {
+        return xJoueur;
+    }
+
     public JButton getClassique() {
         return classique;
     }
@@ -439,6 +498,10 @@ public class Fenetre extends JFrame {
 
     public JTextField getLongeur() {
         return longeur;
+    }
+
+    public JTextField getNbJoueur() {
+        return nbJoueur;
     }
 
     public boolean isNbJoueurs() { return nbJoueurs; }
