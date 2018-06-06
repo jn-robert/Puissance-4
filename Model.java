@@ -27,6 +27,7 @@ public class Model {
     private int nbJoueur;
 
     private ArrayList<Pion> listJoueur;
+    private ArrayList<Boolean> listBoolJoueurs;
 
     public Model(){
         //a revoir
@@ -74,6 +75,7 @@ public class Model {
 */
     public void setNombreDeJoueur(int nbJoueur){
         listJoueur = new ArrayList<>();
+        listBoolJoueurs = new ArrayList<>();
         this.nbJoueur = nbJoueur;
         switch (nbJoueur)
         {
@@ -244,6 +246,7 @@ public class Model {
             if (!troisDangerAligne){
                 colonne = (int) (Math.random() * 7);
             }
+            troisDangerAligne=false;
         }
         return colonne;
     }
@@ -434,4 +437,12 @@ public class Model {
     public ArrayList<Pion> getListJoueur() { return listJoueur; }
 
     public void setListJoueur(ArrayList<Pion> listJoueur) { this.listJoueur = listJoueur; }
+
+    public ArrayList<Boolean> getListBoolJoueurs() {
+        return listBoolJoueurs;
+    }
+
+    public void setListBoolJoueurs(ArrayList<Boolean> listBoolJoueurs) {
+        this.listBoolJoueurs = listBoolJoueurs;
+    }
 }

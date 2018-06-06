@@ -31,6 +31,25 @@ public class BoutonJetonVsIA implements ActionListener {
                         model.setP1Ordi(false);
                         model.setpOrdi(true);
                         fen.getJoueurCourant().setText("(IA) Jeton jaune joue");
+//                        try {
+//                            Thread.currentThread().sleep(2000);
+//                        }
+//                        catch (InterruptedException exInt) {}
+                        j=model.coupsIA();
+                        i = model.testColonne(j);
+                        model.getGrille();
+                        model.rempli(i, j, model.getJ2());
+                        fen.dessine(i, j, fen.getJetonJaune());
+                        if (!model.test(model.getGrille())){
+                            model.setP1Ordi(true);
+                            model.setpOrdi(false);
+                            fen.getJoueurCourant().setText("(Vous) jeton rouge joue");
+                            return;
+                        }else{
+                            fen.afficheMessage("Puissance 4! IA gagne");
+                            fen.changerVersion(5);
+                        }
+                        compteurJetons++;
                         return;
                     }else{
                         fen.afficheMessage("Puissance 4 ! "+model.getJ1()+" gagne");
@@ -41,23 +60,6 @@ public class BoutonJetonVsIA implements ActionListener {
                     fen.afficheMessage("Colonne pleine ,veuillez jouer ailleurs");
                     return;
                 }
-
-            } else if (model.ispOrdi()) {
-                int j=model.coupsIA();
-                int i = model.testColonne(j);
-                    model.getGrille();
-                    model.rempli(i, j, model.getJ2());
-                    fen.dessine(i, j, fen.getJetonJaune());
-                    if (!model.test(model.getGrille())){
-                        model.setP1Ordi(true);
-                        model.setpOrdi(false);
-                        fen.getJoueurCourant().setText("(Vous) jeton rouge joue");
-                        return;
-                    }else{
-                        fen.afficheMessage("Puissance 4! IA gagne");
-                        fen.changerVersion(5);
-                    }
-                    compteurJetons++;
             }
         }else {
             fen.afficheMessage("Egalite");

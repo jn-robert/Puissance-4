@@ -47,7 +47,7 @@ public class BoutonPersonaliserPartie implements ActionListener {
             model.setNombreDeJoueur(6);
 
         model.init();
-        fen.changerVersion(3);
+        fen.changerVersion(9);
         }
     }
 
