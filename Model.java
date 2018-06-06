@@ -24,6 +24,7 @@ public class Model {
     private int series_j1;
     private int series_jOrdi;
     private boolean troisDangerAligne=false;
+    private int nbJoueur;
 
     private ArrayList<Pion> listJoueur;
 
@@ -52,9 +53,28 @@ public class Model {
         }
 
     }
-
+/*
+    public String multijoueur(){
+        if (nbJoueur >= 3){
+            while (//grille pas plein){
+                for (int i = 0 ; i < listJoueur.size() ; i++){
+                    if (//grille plein){
+                        return "egalite";
+                    }
+                    listJoueur.get(i).//truck pour qui joue;
+                    if (//condition victoire){
+                        return "Le joueur n°"+i+" a gagnee";
+                    }
+                }
+            }
+            return "egalite"
+        }
+        //joue normal
+    }
+*/
     public void setNombreDeJoueur(int nbJoueur){
         listJoueur = new ArrayList<>();
+        this.nbJoueur = nbJoueur;
         switch (nbJoueur)
         {
             case 2:
