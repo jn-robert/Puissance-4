@@ -28,7 +28,7 @@ public class Model {
     private ArrayList<Pion> listJoueur;
 
     public Model(){
-
+        //a revoir
         nombreDeVictoireJoueurRouge=0;
         nombreDeVictoireJoueurJaune=0;
         nombreDePartie=1;
