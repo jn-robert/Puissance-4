@@ -28,19 +28,26 @@ public class BoutonPersonaliserPartie implements ActionListener {
             fen.afficheMessage("la longeur doit etre comprise entre 4 et 16");
             return;
         }
-        if (fen.getUnePartie().isSelected()){
+        if (fen.getUnePartie().isSelected())
             model.setNombreDePartie(1);
-        }
-
-        if (fen.getTroisPartie().isSelected()){}
+        if (fen.getTroisPartie().isSelected())
             model.setNombreDePartie(3);
-        if (fen.getCinqPartie().isSelected()){
+        if (fen.getCinqPartie().isSelected())
             model.setNombreDePartie(5);
-        }
+
+        if (fen.getJoueur2().isSelected())
+            model.setNombreDeJoueur(2);
+        if (fen.getJoueur3().isSelected())
+            model.setNombreDeJoueur(3);
+        if (fen.getJoueur4().isSelected())
+            model.setNombreDeJoueur(4);
+        if (fen.getJoueur5().isSelected())
+            model.setNombreDeJoueur(5);
+        if (fen.getJoueur6().isSelected())
+            model.setNombreDeJoueur(6);
 
         model.init();
         fen.changerVersion(3);
         }
-
     }
 

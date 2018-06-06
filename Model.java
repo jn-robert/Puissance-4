@@ -53,10 +53,14 @@ public class Model {
 
     }
 
-    public void multijoueur(int nbJoueur){
+    public void setNombreDeJoueur(int nbJoueur){
         listJoueur = new ArrayList<>();
         switch (nbJoueur)
         {
+            case 2:
+                listJoueur.add(new Pion("rouge"));
+                listJoueur.add(new Pion("jaune"));
+                break;
             case 3:
                 listJoueur.add(new Pion("rouge"));
                 listJoueur.add(new Pion("jaune"));

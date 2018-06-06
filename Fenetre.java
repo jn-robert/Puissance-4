@@ -10,7 +10,6 @@ public class Fenetre extends JFrame {
     private BoutonJeton boutonJeton;
     private BoutonJetonVsIA boutonJetonVsIA;
     private BoutonPersonaliserPartie boutonPersonaliserPartie;
-    private ButtonMultijoueur buttonNbJoueur;
 
  // Bouton pour la premiere fenetre ( Joueur vs Ia ou joueur vs joueurs)
     private JLabel  typePartie;
@@ -27,10 +26,6 @@ public class Fenetre extends JFrame {
     private JButton retour;
     private ControlBouton controlButon;
 
-// Selection multijoueur
-    private JLabel nbxJoueur;
-    private JTextField nbJoueur;
-
 // Bouton pour le jeu
     private Model model;
     private JButton[][] plateau;
@@ -38,6 +33,7 @@ public class Fenetre extends JFrame {
     private ImageIcon jetonJaune;
     private ImageIcon jetonRouge;
     private JLabel joueurCourant;
+
 // pour parametrer la partie
     private JLabel tailleGrille;
     private JTextField largeur;
@@ -50,6 +46,14 @@ public class Fenetre extends JFrame {
     private JRadioButton troisPartie;
     private JRadioButton cinqPartie;
     private ButtonGroup boutonNbrparties;
+    private JRadioButton joueur2;
+    private JRadioButton joueur3;
+    private JRadioButton joueur4;
+    private JRadioButton joueur5;
+    private JRadioButton joueur6;
+    private ButtonGroup buttonGroup;
+    private JLabel nbJoueur;
+
 // pour la fin de partie;
     private JButton recommencer;
     private JButton quitter;
@@ -86,10 +90,6 @@ public class Fenetre extends JFrame {
         controlBut = new ControlBouton(this,model);
         joueurVsJoueur.addActionListener(controlBut);
 
-        xJoueur = new JButton("Multi joueurs");
-        controlBut = new ControlBouton(this,model);
-        xJoueur.addActionListener(controlBut);
-
         typePartie = new JLabel("Type de partie :");
         ou = new JLabel("OU");
     }
@@ -112,6 +112,19 @@ public class Fenetre extends JFrame {
 
     public void creerWidjetChoixPartie(){
         nbrParties = new JLabel("Nombre de parties pour gagner : ");
+        nbJoueur = new JLabel("Nombre de joueur");
+        buttonGroup = new ButtonGroup();
+        joueur2 = new JRadioButton("2",true);
+        joueur3 = new JRadioButton("3");
+        joueur4 = new JRadioButton("4");
+        joueur5 = new JRadioButton("5");
+        joueur6 = new JRadioButton("6");
+        buttonGroup.add(joueur2);
+        buttonGroup.add(joueur3);
+        buttonGroup.add(joueur4);
+        buttonGroup.add(joueur5);
+        buttonGroup.add(joueur6);
+
         boutonNbrparties = new ButtonGroup();
         cinqPartie = new JRadioButton("5");
         troisPartie = new JRadioButton("3");
@@ -128,29 +141,6 @@ public class Fenetre extends JFrame {
         longeur = new JTextField("");
         longeur.setColumns(10);
         validerPartie = new JButton("Valider");
-    }
-
-    public void creerWidgetNbJoueur(){
-        nbxJoueur = new JLabel("Nombre de joueurs");
-        nbJoueur = new JTextField();
-        validerPartie = new JButton("Valider");
-        buttonNbJoueur = new ButtonMultijoueur(model,this);
-    }
-
-    public void creerJeuMulti(){
-        //        Menu
-        itemInterface1 = new JMenuItem("Retour choix joueurs");
-
-        itemInterface2 = new JMenuItem("Retour choix partie");
-
-        controlMen = new ControlMenu(this);
-        itemInterface1.addActionListener(controlMen);
-        itemInterface2.addActionListener(controlMen);
-
-        plateau = new JButton[model.getLongeurPuissance4()][model.getLargeurPuissance4()];
-        jetonVide = new ImageIcon("jetonVide.png");
-        jetonJaune = new ImageIcon("jetonJaune.png");
-        jetonRouge = new ImageIcon("jetonRouge.png");
     }
 
     public void creerJeu(){
@@ -221,7 +211,6 @@ public class Fenetre extends JFrame {
         pgrandPanel.add(unJoueur);
         pgrandPanel.add(ou);
         pgrandPanel.add(joueurVsJoueur);
-        pgrandPanel.add(xJoueur);
         pgiga.add(pgrandPanel);
 
         setContentPane(pgiga);
@@ -248,11 +237,20 @@ public class Fenetre extends JFrame {
     }
 
     public void ajouterWidjetChoixPartie(){
+        JPanel panelNbJoueur = new JPanel();
         JPanel panelNbrPartie = new JPanel();
         JPanel panelLargeur = new JPanel();
         JPanel panelLongeur = new JPanel();
         JPanel choixPartie = new JPanel();
         JPanel jvalider = new JPanel();
+
+        panelNbJoueur.add(nbJoueur);
+        panelNbJoueur.add(joueur2);
+        panelNbJoueur.add(joueur3);
+        panelNbJoueur.add(joueur4);
+        panelNbJoueur.add(joueur5);
+        panelNbJoueur.add(joueur6);
+
         choixPartie.setLayout(new BoxLayout(choixPartie,1));
         panelLargeur.setLayout(new BoxLayout(panelLargeur,0));
         panelLongeur.setLayout(new BoxLayout(panelLongeur,0));
@@ -270,17 +268,9 @@ public class Fenetre extends JFrame {
         choixPartie.add(panelLargeur);
         choixPartie.add(panelLongeur);
         choixPartie.add(panelNbrPartie);
+        choixPartie.add(panelNbJoueur);
         choixPartie.add(jvalider);
         setContentPane(choixPartie);
-    }
-
-    public void ajouterWidgetNbJoueur(){
-        JPanel panel = new JPanel();
-        panel.add(nbxJoueur);
-        panel.add(nbJoueur);
-        panel.add(validerPartie);
-        validerPartie.addActionListener(buttonNbJoueur);
-        setContentPane(panel);
     }
 
     public void ajouterWidgetJeu(){
@@ -396,14 +386,6 @@ public class Fenetre extends JFrame {
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
-        if (n==7){
-            creerWidgetNbJoueur();
-            ajouterWidgetNbJoueur();
-            pack();
-            setTitle("Puissance4");
-            setVisible(true);
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }
     }
 
     public void creerMenu(){
@@ -448,6 +430,26 @@ public class Fenetre extends JFrame {
 
     public JRadioButton getCinqPartie() {
         return cinqPartie;
+    }
+
+    public JRadioButton getJoueur2() {
+        return joueur2;
+    }
+
+    public JRadioButton getJoueur3() {
+        return joueur3;
+    }
+
+    public JRadioButton getJoueur4() {
+        return joueur4;
+    }
+
+    public JRadioButton getJoueur5() {
+        return joueur5;
+    }
+
+    public JRadioButton getJoueur6() {
+        return joueur6;
     }
 
     public JButton getQuitter() { return quitter; }
@@ -498,10 +500,6 @@ public class Fenetre extends JFrame {
 
     public JTextField getLongeur() {
         return longeur;
-    }
-
-    public JTextField getNbJoueur() {
-        return nbJoueur;
     }
 
     public boolean isNbJoueurs() { return nbJoueurs; }
