@@ -72,6 +72,7 @@ public class Fenetre extends JFrame {
     private ImageIcon jetonAnglais;
     private ImageIcon jetonFr;
     private BoutonJetonMulti boutonJetonMulti;
+    private ArrayList<ImageIcon> listJetons;
 
     public Fenetre(Model model) {
         this.model = model;
@@ -441,8 +442,28 @@ public class Fenetre extends JFrame {
         jetonAnglais = new ImageIcon("jetonAnglais.png");
         jetonFr = new ImageIcon("jetonFr.png");
 
+        listJetons = new ArrayList<>();
+        listJetons.add(jetonJaune);
+        listJetons.add(jetonRouge);
+        listJetons.add(jetonVert);
+        listJetons.add(jetonViolet);
+        listJetons.add(jetonAnglais);
+        listJetons.add(jetonFr);
+
         double result;
-        if (joueur3.isSelected()){
+        if (joueur2.isSelected()){
+            model.setNombreDeJoueur(2);
+            result = Math.random()*1;
+            if (result<=1./2.){
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>1./2.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+            }
+        }
+        else if (joueur3.isSelected()){
             model.setNombreDeJoueur(3);
             result = Math.random()*1;
             if (result<=1./3.){
@@ -461,15 +482,125 @@ public class Fenetre extends JFrame {
                 model.getListBoolJoueurs().add(false);
             }
         }
-//        if (joueur4.isSelected()){
-//
-//        }
-//        if (joueur5.isSelected()){
-//
-//        }
-//        if (joueur6.isSelected()){
-//
-//        }
+        else if (joueur4.isSelected()){
+            model.setNombreDeJoueur(4);
+            result = Math.random()*1;
+            if (result<=1./4.){
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>1./4. && result<=2./4.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>2./4. && result<=3./4.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>3./4.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+            }
+        }
+        else if (joueur5.isSelected()){
+            model.setNombreDeJoueur(5);
+            result = Math.random()*1;
+            if (result<=1./5.){
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>1./5. && result<=2./5.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>2./5. && result<=3./5.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>3./5. && result<=4./5.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>4./5.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+            }
+        }
+        else if (joueur6.isSelected()){
+            model.setNombreDeJoueur(6);
+            result = Math.random()*1;
+            if (result<=1./6.){
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>1./6. && result<=2./6.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>2./6. && result<=3./6.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>3./6. && result<=4./6.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>4./6. && result<=5./6.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+                model.getListBoolJoueurs().add(false);
+            }
+            else if (result>5./6.){
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(false);
+                model.getListBoolJoueurs().add(true);
+            }
+        }
 
         new Grille(model.getLongeurPuissance4(),model.getLargeurPuissance4());
 
@@ -641,6 +772,10 @@ public class Fenetre extends JFrame {
 
     public JButton getValiderPartie() {
         return validerPartie;
+    }
+
+    public ArrayList<ImageIcon> getListJetons() {
+        return listJetons;
     }
 }
 

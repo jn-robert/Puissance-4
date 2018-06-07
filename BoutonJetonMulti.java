@@ -26,7 +26,7 @@ public class BoutonJetonMulti implements ActionListener {
                     try {
                         model.getGrille();
                         model.rempli(i, j, model.getListJoueur().get(k));
-                        fen.dessine(i, j, fen.getJetonFr());
+                        fen.dessine(i, j, fen.getListJetons().get(k));
                         if (!model.test(model.getGrille())) {
                             model.getListBoolJoueurs().set(k,false);
                             if (k+1<model.getListBoolJoueurs().size()) {
@@ -38,7 +38,7 @@ public class BoutonJetonMulti implements ActionListener {
                             fen.getJoueurCourant().setText("Jeton " + k + " joue");
                             return;
                         } else {
-                            fen.afficheMessage("Puissance 4 ! " + model.getListJoueur().get(k) + " gagne");
+                            fen.afficheMessage("Puissance 4 ! joueur " + k + " gagne");
                             fen.changerVersion(5);
                         }
                         compteurJetons++;
