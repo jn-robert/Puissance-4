@@ -44,7 +44,7 @@ public class BoutonJetonMulti implements ActionListener {
                             fen.getJoueurCourant().setText("Joueur " + k + " joue");
                             return;
                         } else {
-                            fen.afficheMessage("Puissance 4 ! joueur " + k + " gagne");
+                            fen.afficheMessage("Puissance 4 ! joueur " + k+1 + " gagne");
                             fen.changerVersion(5);
                         }
                         compteurJetons++;
