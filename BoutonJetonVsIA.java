@@ -36,6 +36,7 @@ public class BoutonJetonVsIA implements ActionListener {
 //                        }
 //                        catch (InterruptedException exInt) {}
                         j=model.coupsIA();
+                        model.setTroisDangerAligne(false);
                         i = model.testColonne(j);
                         model.getGrille();
                         model.rempli(i, j, model.getJ2());

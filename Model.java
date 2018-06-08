@@ -254,8 +254,8 @@ public class Model {
 
     public int nbAlignes(){
         int colonne = 0;
-        for (int i=0;i<longeurPuissance4;i++) {
-            for (int j = 0; j < largeurPuissance4; j++) {
+        for (int i=longeurPuissance4;i>=0;i--) {
+            for (int j = largeurPuissance4; j >=0; j--) {
                 try {
                     // tests contres
                     if (grille[i][j] == j1 && grille[i][j + 1] == j1 && grille[i][j + 2] == j1 && grille[i][j+3]==null) {
@@ -285,14 +285,14 @@ public class Model {
                         }
                         rempli(ligne,j,null);
                     }
-                    else if (grille[i][j] == j1 && grille[i + 1][j] == j1 && grille[i + 2][j] == j1 && grille[i-1][j]==null) {
+                    else if (grille[i][j] == j1 && grille[i - 1][j] == j1 && grille[i - 2][j] == j1 && grille[i-3][j]==null) {
                         int ligne = testColonne(j);
-                        rempli(ligne,j,j1);
+                        rempli(i-3,j,j1);
                         if (test(grille)) {
                             troisDangerAligne = true;
                             colonne = j;
                         }
-                        rempli(ligne,j,null);
+                        rempli(i-3,j,null);
                     }
                     else if (grille[i][j]==j1 && grille[i+1][j+1]==j1 && grille[i+2][j+2]==j1 && grille[i+3][j+3]==null) {
                         int ligne = testColonne(j + 3);
@@ -358,14 +358,14 @@ public class Model {
                         }
                         rempli(ligne,j,null);
                     }
-                    else if (grille[i][j] == j2 && grille[i + 1][j] == j2 && grille[i + 2][j] == j2 && grille[i-1][j]==null) {
+                    else if (grille[i][j] == j2 && grille[i - 1][j] == j2 && grille[i - 2][j] == j2 && grille[i-3][j]==null) {
                         int ligne = testColonne(j);
-                        rempli(ligne,j,j2);
+                        rempli(i-3,j,j2);
                         if (test(grille)) {
                             troisDangerAligne = true;
                             colonne = j;
                         }
-                        rempli(ligne,j,null);
+                        rempli(i-3,j,null);
                     }
                     else if (grille[i][j]==j2 && grille[i+1][j+1]==j2 && grille[i+2][j+2]==j2 && grille[i+3][j+3]==null) {
                         int ligne = testColonne(j + 3);
@@ -445,5 +445,9 @@ public class Model {
 
     public void setListBoolJoueurs(ArrayList<Boolean> listBoolJoueurs) {
         this.listBoolJoueurs = listBoolJoueurs;
+    }
+
+    public void setTroisDangerAligne(boolean troisDangerAligne) {
+        this.troisDangerAligne = troisDangerAligne;
     }
 }

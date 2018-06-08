@@ -101,7 +101,7 @@ public class Fenetre extends JFrame {
     }
 
     public void creerWidget2(){
-        parametrerLaPartie = new JLabel("Porfil de la partie :");
+        parametrerLaPartie = new JLabel("Profil de la partie :");
 
         classique = new JButton("classique");
         perssonalise = new JButton(" Personnalisé");
@@ -193,7 +193,7 @@ public class Fenetre extends JFrame {
             joueurCourant = new JLabel("(Vous) joueur rouge commence");
         }
         if (model.ispOrdi()){
-            joueurCourant = new JLabel("(Vous) joueur rouge commence");
+            joueurCourant = new JLabel("(Vous) joueur rouge joue");
         }
     }
 
