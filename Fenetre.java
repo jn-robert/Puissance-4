@@ -606,7 +606,7 @@ public class Fenetre extends JFrame {
 
         for (int i =0; i<model.getListBoolJoueurs().size();i++){
             if (model.getListBoolJoueurs().get(i)){
-                joueurCourant = new JLabel("Joueur "+ i +" commence");
+                joueurCourant = new JLabel("Joueur "+ model.getListJoueur().get(i) +" commence");
             }
         }
     }

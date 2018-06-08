@@ -35,16 +35,10 @@ public class BoutonJetonMulti implements ActionListener {
                                 k=0;
                             }
                             model.getListBoolJoueurs().set(k, true);
-
-                            if (k+1<model.getListBoolJoueurs().size()) {
-                                k=k+1;
-                            }else {
-                                k=model.getListBoolJoueurs().size();
-                            }
-                            fen.getJoueurCourant().setText("Joueur " + k + " joue");
+                            fen.getJoueurCourant().setText("Joueur " + model.getListJoueur().get(k) + " joue");
                             return;
                         } else {
-                            fen.afficheMessage("Puissance 4 ! joueur " + k+1 + " gagne");
+                            fen.afficheMessage("Puissance 4 ! joueur " + model.getListJoueur().get(k) + " gagne");
                             fen.changerVersion(5);
                         }
                         compteurJetons++;

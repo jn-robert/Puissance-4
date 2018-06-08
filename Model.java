@@ -81,34 +81,34 @@ public class Model {
         switch (nbJoueur)
         {
             case 2:
-                listJoueur.add(new Pion("rouge"));
                 listJoueur.add(new Pion("jaune"));
+                listJoueur.add(new Pion("rouge"));
                 break;
             case 3:
-                listJoueur.add(new Pion("rouge"));
                 listJoueur.add(new Pion("jaune"));
-                listJoueur.add(new Pion("bleu"));
+                listJoueur.add(new Pion("rouge"));
+                listJoueur.add(new Pion("vert"));
                 break;
             case 4:
-                listJoueur.add(new Pion("rouge"));
                 listJoueur.add(new Pion("jaune"));
-                listJoueur.add(new Pion("bleu"));
-                listJoueur.add(new Pion("orange"));
-                break;
-            case 5:
                 listJoueur.add(new Pion("rouge"));
-                listJoueur.add(new Pion("jaune"));
-                listJoueur.add(new Pion("bleu"));
-                listJoueur.add(new Pion("orange"));
-                listJoueur.add(new Pion("vert"));
-                break;
-            case 6:
-                listJoueur.add(new Pion("rouge"));
-                listJoueur.add(new Pion("jaune"));
-                listJoueur.add(new Pion("bleu"));
-                listJoueur.add(new Pion("orange"));
                 listJoueur.add(new Pion("vert"));
                 listJoueur.add(new Pion("violet"));
+                break;
+            case 5:
+                listJoueur.add(new Pion("jaune"));
+                listJoueur.add(new Pion("rouge"));
+                listJoueur.add(new Pion("vert"));
+                listJoueur.add(new Pion("violet"));
+                listJoueur.add(new Pion("anglais"));
+                break;
+            case 6:
+                listJoueur.add(new Pion("jaune"));
+                listJoueur.add(new Pion("rouge"));
+                listJoueur.add(new Pion("vert"));
+                listJoueur.add(new Pion("violet"));
+                listJoueur.add(new Pion("anglais"));
+                listJoueur.add(new Pion("france"));
                 break;
         }
 

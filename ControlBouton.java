@@ -52,7 +52,7 @@ public class ControlBouton implements ActionListener {
             fen.changerVersion(4);
         }
 
-        if (e.getSource()==fen.getValiderPartie() && !fen.getJoueur2().isSelected()){
+        if (e.getSource()==fen.getValiderPartie()){
             fen.changerVersion(9);
         }
 
