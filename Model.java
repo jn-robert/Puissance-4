@@ -254,8 +254,8 @@ public class Model {
 
     public int nbAlignes(){
         int colonne = 0;
-        for (int i=longeurPuissance4;i>=0;i--) {
-            for (int j = largeurPuissance4; j >=0; j--) {
+        for (int i=0;i<longeurPuissance4;i++) {
+            for (int j = 0; j < largeurPuissance4; j++) {
                 try {
                     // tests contres
                     if (grille[i][j] == j1 && grille[i][j + 1] == j1 && grille[i][j + 2] == j1 && grille[i][j+3]==null) {
@@ -267,16 +267,16 @@ public class Model {
                         }
                         rempli(ligne,j+3,null);
                     }
-                    else if (grille[i][j] == j1 && grille[i][j + 1] == j1 && grille[i][j + 2] == j1 && grille[i][j-1]==null) {
-                        int ligne = testColonne(j-1);
-                        rempli(ligne, j-1, j1);
+                    if (grille[i][j] == j1 && grille[i][j - 1] == j1 && grille[i][j - 2] == j1 && grille[i][j-3]==null) {
+                        int ligne = testColonne(j-3);
+                        rempli(ligne, j-3, j1);
                         if (test(grille)) {
                             troisDangerAligne = true;
-                            colonne = j-1;
+                            colonne = j-3;
                         }
-                        rempli(ligne,j-1,null);
+                        rempli(ligne,j-3,null);
                     }
-                    else if (grille[i][j] == j1 && grille[i + 1][j] == j1 && grille[i + 2][j] == j1 && grille[i+3][j]==null) {
+                    if (grille[i][j] == j1 && grille[i - 1][j] == j1 && grille[i - 2][j] == j1 && grille[i-3][j]==null) {
                         int ligne = testColonne(j);
                         rempli(ligne,j,j1);
                         if (test(grille)) {
@@ -285,16 +285,7 @@ public class Model {
                         }
                         rempli(ligne,j,null);
                     }
-                    else if (grille[i][j] == j1 && grille[i - 1][j] == j1 && grille[i - 2][j] == j1 && grille[i-3][j]==null) {
-                        int ligne = testColonne(j);
-                        rempli(i-3,j,j1);
-                        if (test(grille)) {
-                            troisDangerAligne = true;
-                            colonne = j;
-                        }
-                        rempli(i-3,j,null);
-                    }
-                    else if (grille[i][j]==j1 && grille[i+1][j+1]==j1 && grille[i+2][j+2]==j1 && grille[i+3][j+3]==null) {
+                    if (grille[i][j]==j1 && grille[i+1][j+1]==j1 && grille[i+2][j+2]==j1 && grille[i+3][j+3]==null) {
                         int ligne = testColonne(j + 3);
                         rempli(ligne, j + 3, j1);
                         if (test(grille)) {
@@ -303,7 +294,25 @@ public class Model {
                         }
                         rempli(ligne, j + 3, null);
                     }
-                    else if (grille[i][j]==j1 && grille[i+1][j+1]==j1 && grille[i+2][j+2]==j1 && grille[i-1][j-1]==null){
+                    if (grille[i][j]==j1 && grille[i-1][j-1]==j1 && grille[i-2][j-2]==j1 && grille[i-3][j-3]==null) {
+                        int ligne = testColonne(j - 3);
+                        rempli(ligne, j - 3, j1);
+                        if (test(grille)) {
+                            troisDangerAligne = true;
+                            colonne = j - 3;
+                        }
+                        rempli(ligne, j + 3, null);
+                    }
+                    if (grille[i][j]==j1 && grille[i-1][j-1]==j1 && grille[i-2][j-2]==j1 && grille[i+1][j+1]==null) {
+                        int ligne = testColonne(j + 3);
+                        rempli(ligne, j + 3, j1);
+                        if (test(grille)) {
+                            troisDangerAligne = true;
+                            colonne = j + 3;
+                        }
+                        rempli(ligne, j + 3, null);
+                    }
+                    if (grille[i][j]==j1 && grille[i+1][j+1]==j1 && grille[i+2][j+2]==j1 && grille[i-1][j-1]==null){
                         int ligne = testColonne(j-1);
                         rempli(ligne,j-1,j1);
                         if (test(grille)){
@@ -312,7 +321,7 @@ public class Model {
                         }
                         rempli(ligne,j-1,null);
                     }
-                    else if (grille[i][j]==j1 && grille[i+1][j-1]==j1 && grille[i+2][j-2]==j1 && grille[i+3][j-3]==null) {
+                    if (grille[i][j]==j1 && grille[i+1][j-1]==j1 && grille[i+2][j-2]==j1 && grille[i+3][j-3]==null) {
                         int ligne = testColonne(j - 3);
                         rempli(ligne, j - 3, j1);
                         if (test(grille)) {
@@ -321,7 +330,16 @@ public class Model {
                         }
                         rempli(ligne, j - 3, null);
                     }
-                    else if (grille[i][j]==j1 && grille[i+1][j-1]==j1 && grille[i+2][j-2]==j1 && grille[i-1][j+1]==null){
+                    if(grille[i][j]==j1 && grille[i-1][j+1]==j1 && grille[i-2][j+2]==j1 && grille[i-3][j+3]==null) {
+                        int ligne = testColonne(j + 3);
+                        rempli(ligne, j + 3, j1);
+                        if (test(grille)) {
+                            troisDangerAligne = true;
+                            colonne = j + 3;
+                        }
+                        rempli(ligne, j + 3, null);
+                    }
+                    if (grille[i][j]==j1 && grille[i+1][j-1]==j1 && grille[i+2][j-2]==j1 && grille[i-1][j+1]==null){
                         int ligne = testColonne(j+1);
                         rempli(ligne,j+1,j1);
                         if (test(grille)){
@@ -340,16 +358,16 @@ public class Model {
                         }
                         rempli(ligne,j+3,null);
                     }
-                    else if (grille[i][j] == j2 && grille[i][j + 1] == j2 && grille[i][j + 2] == j2 && grille[i][j-1]==null) {
-                        int ligne = testColonne(j-1);
-                        rempli(ligne, j-1, j2);
+                    if (grille[i][j] == j2 && grille[i][j - 1] == j2 && grille[i][j - 2] == j2 && grille[i][j-3]==null) {
+                        int ligne = testColonne(j-3);
+                        rempli(ligne, j-3, j2);
                         if (test(grille)) {
                             troisDangerAligne = true;
-                            colonne = j-1;
+                            colonne = j-3;
                         }
-                        rempli(ligne,j-1,null);
+                        rempli(ligne,j-3,null);
                     }
-                    else if (grille[i][j] == j2 && grille[i + 1][j] == j2 && grille[i + 2][j] == j2 && grille[i+3][j]==null) {
+                    if (grille[i][j] == j2 && grille[i - 1][j] == j2 && grille[i - 2][j] == j2 && grille[i-3][j]==null) {
                         int ligne = testColonne(j);
                         rempli(ligne,j,j2);
                         if (test(grille)) {
@@ -358,16 +376,7 @@ public class Model {
                         }
                         rempli(ligne,j,null);
                     }
-                    else if (grille[i][j] == j2 && grille[i - 1][j] == j2 && grille[i - 2][j] == j2 && grille[i-3][j]==null) {
-                        int ligne = testColonne(j);
-                        rempli(i-3,j,j2);
-                        if (test(grille)) {
-                            troisDangerAligne = true;
-                            colonne = j;
-                        }
-                        rempli(i-3,j,null);
-                    }
-                    else if (grille[i][j]==j2 && grille[i+1][j+1]==j2 && grille[i+2][j+2]==j2 && grille[i+3][j+3]==null) {
+                    if (grille[i][j]==j2 && grille[i+1][j+1]==j2 && grille[i+2][j+2]==j2 && grille[i+3][j+3]==null) {
                         int ligne = testColonne(j + 3);
                         rempli(ligne, j + 3, j2);
                         if (test(grille)) {
@@ -376,7 +385,7 @@ public class Model {
                         }
                         rempli(ligne, j + 3, null);
                     }
-                    else if (grille[i][j]==j2 && grille[i+1][j+1]==j2 && grille[i+2][j+2]==j2 && grille[i-1][j-1]==null){
+                    if (grille[i][j]==j2 && grille[i+1][j+1]==j2 && grille[i+2][j+2]==j2 && grille[i-1][j-1]==null){
                         int ligne = testColonne(j-1);
                         rempli(ligne,j-1,j2);
                         if (test(grille)){
@@ -385,7 +394,7 @@ public class Model {
                         }
                         rempli(ligne,j-1,null);
                     }
-                    else if (grille[i][j]==j2 && grille[i+1][j-1]==j2 && grille[i+2][j-2]==j2 && grille[i+3][j-3]==null) {
+                    if (grille[i][j]==j2 && grille[i+1][j-1]==j2 && grille[i+2][j-2]==j2 && grille[i+3][j-3]==null) {
                         int ligne = testColonne(j - 3);
                         rempli(ligne, j - 3, j2);
                         if (test(grille)) {
@@ -394,7 +403,7 @@ public class Model {
                         }
                         rempli(ligne, j - 3, null);
                     }
-                    else if (grille[i][j]==j2 && grille[i+1][j-1]==j2 && grille[i+2][j-2]==j2 && grille[i-1][j+1]==null){
+                    if (grille[i][j]==j2 && grille[i+1][j-1]==j2 && grille[i+2][j-2]==j2 && grille[i-1][j+1]==null){
                         int ligne = testColonne(j+1);
                         rempli(ligne,j+1,j2);
                         if (test(grille)){
