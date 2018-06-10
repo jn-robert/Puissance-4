@@ -1,7 +1,4 @@
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class Model {
     private  Pion j1;
@@ -431,27 +428,11 @@ public class Model {
 
     public ArrayList<Pion> getListJoueur() { return listJoueur; }
 
-    public void setListJoueur(ArrayList<Pion> listJoueur) { this.listJoueur = listJoueur; }
-
     public ArrayList<Boolean> getListBoolJoueurs() {
         return listBoolJoueurs;
     }
 
-    public void setListBoolJoueurs(ArrayList<Boolean> listBoolJoueurs) {
-        this.listBoolJoueurs = listBoolJoueurs;
-    }
-
     public void setTroisDangerAligne(boolean troisDangerAligne) {
         this.troisDangerAligne = troisDangerAligne;
-    }
-
-    public void afficheGrille(){
-        for (int i=0;i<6;i++){
-            for (int j=0;j<7;j++){
-                System.out.print(grille[i][j]+"   |   ");
-            }
-            System.out.println();
-        }
-        System.out.println();
     }
 }

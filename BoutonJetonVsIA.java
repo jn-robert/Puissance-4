@@ -31,10 +31,6 @@ public class BoutonJetonVsIA implements ActionListener {
                         model.setP1Ordi(false);
                         model.setpOrdi(true);
                         fen.getJoueurCourant().setText("(IA) Jeton jaune joue");
-//                        try {
-//                            Thread.currentThread().sleep(2000);
-//                        }
-//                        catch (InterruptedException exInt) {}
                         j=model.coupsIA();
                         model.setTroisDangerAligne(false);
                         i = model.testColonne(j);
@@ -48,7 +44,6 @@ public class BoutonJetonVsIA implements ActionListener {
                             return;
                         }else{
                             fen.afficheMessage("Puissance 4! IA gagne");
-                            model.afficheGrille();
                             fen.changerVersion(5);
                         }
                         compteurJetons++;
@@ -60,7 +55,6 @@ public class BoutonJetonVsIA implements ActionListener {
                     compteurJetons++;
                 } catch (ArrayIndexOutOfBoundsException ex) {
                     fen.afficheMessage("Colonne pleine ,veuillez jouer ailleurs");
-                    model.afficheGrille();
                     return;
                 }
             }

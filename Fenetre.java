@@ -381,7 +381,7 @@ public class Fenetre extends JFrame {
             ajouterWidgetJeu();
             pack();
             setTitle("Puissance4");
-//            setResizable(false);
+            setResizable(false);
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
@@ -390,7 +390,7 @@ public class Fenetre extends JFrame {
             ajouterWidjetChoixPartie();
             pack();
             setTitle("Puissance4");
-//            setResizable(false);
+            setResizable(false);
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
@@ -399,7 +399,7 @@ public class Fenetre extends JFrame {
             ajouterWidjetFin();
             pack();
             setTitle("Puissance4");
-//            setResizable(false);
+            setResizable(false);
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
@@ -408,7 +408,7 @@ public class Fenetre extends JFrame {
             ajouterWidgetJeuvsIA();
             pack();
             setTitle("Puissance 4");
-//            setResizable(false);
+            setResizable(false);
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }

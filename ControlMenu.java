@@ -5,11 +5,8 @@ public class ControlMenu implements ActionListener {
 
     private Fenetre fen;
 
-    public ControlMenu(){}
-
     public ControlMenu(Fenetre fen){
         this.fen=fen;
-
     }
 
     @Override
