@@ -55,25 +55,7 @@ public class Model {
         }
 
     }
-/*
-    public String multijoueur(){
-        if (nbJoueur >= 3){
-            while (//grille pas plein){
-                for (int i = 0 ; i < listJoueur.size() ; i++){
-                    if (//grille plein){
-                        return "egalite";
-                    }
-                    listJoueur.get(i).//truck pour qui joue;
-                    if (//condition victoire){
-                        return "Le joueur n°"+i+" a gagnee";
-                    }
-                }
-            }
-            return "egalite"
-        }
-        //joue normal
-    }
-*/
+
     public void setNombreDeJoueur(int nbJoueur){
         listJoueur = new ArrayList<>();
         listBoolJoueurs = new ArrayList<>();
@@ -246,6 +228,9 @@ public class Model {
             colonne=nbAlignes();
             if (!troisDangerAligne){
                 colonne = (int) (Math.random() * 7);
+                while (testColonne(colonne)<0){
+                    colonne = (int) (Math.random()*7);
+                }
             }
             troisDangerAligne=false;
         }
@@ -254,8 +239,8 @@ public class Model {
 
     public int nbAlignes(){
         int colonne = 0;
-        for (int i=0;i<longeurPuissance4;i++) {
-            for (int j = 0; j < largeurPuissance4; j++) {
+        for (int i=0;i<6;i++) {
+            for (int j = 0; j < 7; j++) {
                 try {
                     // tests contres
                     if (grille[i][j] == j1 && grille[i][j + 1] == j1 && grille[i][j + 2] == j1 && grille[i][j+3]==null) {
@@ -458,5 +443,15 @@ public class Model {
 
     public void setTroisDangerAligne(boolean troisDangerAligne) {
         this.troisDangerAligne = troisDangerAligne;
+    }
+
+    public void afficheGrille(){
+        for (int i=0;i<6;i++){
+            for (int j=0;j<7;j++){
+                System.out.print(grille[i][j]+"   |   ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }
